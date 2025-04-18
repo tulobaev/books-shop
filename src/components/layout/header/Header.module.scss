@@ -1,0 +1,141 @@
+$warm-white: #fff8e7;
+$text-primary: #4a3728;
+$text-secondary: #3a2f22;
+$input-bg: #fff;
+$transition: 0.3s ease;
+
+.header {
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  background: rgb(251, 250, 250);
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 100%;
+      max-width: 60px;
+      height: auto;
+      object-fit: contain;
+      transition: transform $transition, opacity $transition;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.01);
+        opacity: 0.95;
+      }
+    }
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    .nav_link {
+      color: $text-secondary;
+      font-size: clamp(0.9rem, 0.8rem + 0.4vw, 1rem);
+      text-decoration: none;
+      transition: color $transition, transform $transition;
+
+      &:hover {
+        color: $text-primary;
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .search_form {
+    --width-of-input: 200px;
+    --height-of-input: 40px;
+    --border-height: 2px;
+    position: relative;
+    width: var(--width-of-input);
+    height: var(--height-of-input);
+    display: flex;
+    align-items: center;
+    padding: 0 0.8em;
+    border-radius: 30px;
+    background: $input-bg;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    .search_button {
+      border: none;
+      background: none;
+      color: #8b8ba7;
+      cursor: pointer;
+      transition: color $transition;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    .search_input {
+      width: 100%;
+      height: 100%;
+      padding: 0.6em 0.5em;
+      font-size: 0.9rem;
+      color: $text-primary;
+      background: transparent;
+      border: none;
+
+      &::placeholder {
+        color: #a9a9a9;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .reset_button {
+      border: none;
+      background: none;
+      color: #8b8ba7;
+      opacity: 0;
+      visibility: hidden;
+      cursor: pointer;
+      transition: opacity $transition, color $transition;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .search_input:not(:placeholder-shown) ~ .reset_button {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav {
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .search_form {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+}

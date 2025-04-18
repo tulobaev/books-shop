@@ -4,6 +4,16 @@ export const links = [
   {
     link: "/",
     element: <HomePage />,
-    title: "Home",
+    title: "Башкы бет",
+  },
+  {
+    link: "/",
+    element: "",
+    title: "Сайттын максаты",
+  },
+  {
+    link: "/",
+    element: "",
+    title: "Байланыш",
   },
 ];
