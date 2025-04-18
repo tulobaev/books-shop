@@ -47,6 +47,7 @@ $transition: 0.3s ease;
       font-size: clamp(0.9rem, 0.8rem + 0.4vw, 1rem);
       text-decoration: none;
       transition: color $transition, transform $transition;
+      text-transform: uppercase;
 
       &:hover {
         color: $text-primary;
