@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 import scss from "./Layout.module.scss";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
+import ReduxProvider from "../../providers/ReduxProvider";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -9,13 +10,15 @@ interface ILayoutProps {
 
 const Layout: FC<ILayoutProps> = ({ children }) => {
   return (
-    <div className={scss.layout}>
-      <Header />
-      <main>{children}</main>
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+    <ReduxProvider>
+      <div className={scss.layout}>
+        <Header />
+        <main>{children}</main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
+    </ReduxProvider>
   );
 };
 
