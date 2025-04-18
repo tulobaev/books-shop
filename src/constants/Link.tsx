@@ -1,5 +1,4 @@
 import HomePage from "../components/pages/HomePage";
-import MenuPage from "../components/pages/MenuPage";
 
 export const links = [
   {
@@ -8,8 +7,8 @@ export const links = [
     title: "Башкы бет",
   },
   {
-    link: "/menu",
-    element: <MenuPage />,
+    link: "/",
+    element: "",
     title: "Сайттын максаты",
   },
   {
