@@ -1,14 +1,15 @@
 import { FC } from "react";
 import scss from "./Header.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { links } from "../../../constants/Link";
 
 const Header: FC = () => {
+  const navigate = useNavigate();
   return (
     <header className={scss.header}>
       <div className="container">
         <div className={scss.content}>
-          <div className={scss.logo}>
+          <div onClick={() => navigate("/")} className={scss.logo}>
             <img
               src="https://img.pikbest.com/png-images/20241016/classic-book-logo-vector-illustration_10968775.png!w700wp"
               alt="Logo"
