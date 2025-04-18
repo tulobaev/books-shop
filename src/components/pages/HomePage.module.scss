@@ -1,0 +1,136 @@
+.box {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.category_block {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.089);
+  margin-bottom: 40px;
+}
+
+.category_title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.content_cards {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  gap: 20px;
+}
+
+.cards {
+  max-width: 200px;
+  border-radius: 12px; /* чуть более округлые углы */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* более мягкая тень */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, scale 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  //   margin: 10px;
+  &:hover {
+    transform: translateY(-1px) scale(1.01); /* увеличиваем размер при наведении */
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.2); /* более выраженная тень */
+  }
+}
+
+.card_image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 2px solid #f0f0f0;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.01); /* немного увеличиваем изображение при наведении */
+  }
+}
+
+.text {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #007bff; /* меняем цвет текста при наведении */
+  }
+}
+
+.text p {
+  font-size: 1rem;
+  color: #666;
+  margin: 8px 0;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 3.6em; /* ограничиваем высоту описания */
+}
+
+.text span {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.content_category {
+  flex-basis: 250px;
+  min-width: 250px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.089);
+  padding: 24px;
+  position: sticky;
+  top: 20px;
+  height: 95vh;
+  overflow-y: auto;
+  .category {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .category p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    padding: 6px 6px;
+    cursor: pointer;
+    transition: color 0.3s ease, 0.3s ease;
+
+    &:hover {
+      background-color: #f0f0f0;
+      color: #000;
+      border-radius: 4px;
+    }
+  }
+}
