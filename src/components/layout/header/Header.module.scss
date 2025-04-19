@@ -72,13 +72,12 @@ $transition: 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
 
     .search_button {
-      border: none;
-      background: none;
-      color: #8b8ba7;
-      cursor: pointer;
-      transition: color $transition;
-
-      svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: #fff;
+      .svg {
         width: 18px;
         height: 18px;
       }
@@ -103,15 +102,13 @@ $transition: 0.3s ease;
     }
 
     .reset_button {
-      border: none;
-      background: none;
-      color: #8b8ba7;
-      opacity: 0;
-      visibility: hidden;
-      cursor: pointer;
-      transition: opacity $transition, color $transition;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: #fff;
 
-      svg {
+      .svg {
         width: 16px;
         height: 16px;
       }
@@ -139,4 +136,26 @@ $transition: 0.3s ease;
       max-width: 300px;
     }
   }
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav_link {
+  color: #555;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #000;
+  }
+}
+
+.active {
+  color: #007aff;
+  font-weight: 600;
+  border-bottom: 2px solid #007aff;
 }

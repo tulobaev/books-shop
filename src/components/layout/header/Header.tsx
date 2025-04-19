@@ -1,7 +1,9 @@
 import { FC } from "react";
 import scss from "./Header.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { CiSearch } from "react-icons/ci";
 import { links } from "../../../constants/Link";
+import { IoMdClose } from "react-icons/io";
 
 const Header: FC = () => {
   const navigate = useNavigate();
@@ -18,9 +20,15 @@ const Header: FC = () => {
 
           <nav className={scss.nav}>
             {links.map((item, index) => (
-              <Link className={scss.nav_link} key={index} to={item.link}>
+              <NavLink
+                key={index}
+                to={item.link}
+                className={({ isActive }) =>
+                  isActive ? `${scss.nav_link} ${scss.active}` : scss.nav_link
+                }
+              >
                 {item.title}
-              </Link>
+              </NavLink>
             ))}
           </nav>
 
@@ -30,20 +38,7 @@ const Header: FC = () => {
               type="submit"
               aria-label="Search"
             >
-              <svg
-                width="18"
-                height="18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 14a6 6 0 100-12 6 6 0 000 12zm4.586-2.586l2.5 2.5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <CiSearch className={scss.svg} />
             </button>
             <input
               className={scss.search_input}
@@ -56,21 +51,7 @@ const Header: FC = () => {
               type="reset"
               aria-label="Clear"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <IoMdClose className={scss.svg} />
             </button>
           </form>
         </div>
