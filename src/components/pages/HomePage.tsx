@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react";
 import scss from "./HomePage.module.scss";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import HeroSlider from "../slider/HeroSlider";
 
 const categories = [
   "Бизнес-книги",
@@ -123,6 +124,7 @@ const HomePage: FC = () => {
       <div className="container">
         <div className={scss.box}>
           <div className={scss.content}>
+            <HeroSlider />
             {categories.map((category, index) => {
               const categoryId = `scroll-${index}`;
               return (
