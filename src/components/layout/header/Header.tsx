@@ -1,22 +1,46 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import scss from "./Header.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
-import { links } from "../../../constants/Link";
 import { IoMdClose } from "react-icons/io";
-import logo from "../../../assets/ChatGPT Image 19 апр. 2025 г., 17_42_51.png";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { links } from "../../../constants/Link";
 
 const Header: FC = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <header className={scss.header}>
       <div className="container">
         <div className={scss.content}>
-          <div onClick={() => navigate("/")} className={scss.logo}>
-            <img src={logo} alt="Logo" />
+          <div className={scss.logo} onClick={() => navigate("/")}>
+            <img
+              src="https://not-lain-background-removal.hf.space/file=/tmp/gradio/cc24c9e8397ed070ae266ce1a6353c7060481e74f5c466df14d0bba90f79b1df/image.webp"
+              alt="Logo"
+            />
           </div>
 
-          <nav className={scss.nav}>
+          <nav className={`${scss.nav} ${isMenuOpen ? scss.open : ""}`}>
+            <div className={scss.navHeader}>
+              <div className={scss.logoMobile} onClick={() => navigate("/")}>
+                <img
+                  src="https://not-lain-background-removal.hf.space/file=/tmp/gradio/cc24c9e8397ed070ae266ce1a6353c7060481e74f5c466df14d0bba90f79b1df/image.webp"
+                  alt="Logo"
+                />
+              </div>
+              <button
+                className={scss.closeButton}
+                onClick={toggleMenu}
+                aria-label="Close menu"
+              >
+                <IoMdClose />
+              </button>
+            </div>
             {links.map((item, index) => (
               <NavLink
                 key={index}
@@ -24,6 +48,7 @@ const Header: FC = () => {
                 className={({ isActive }) =>
                   isActive ? `${scss.nav_link} ${scss.active}` : scss.nav_link
                 }
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item.title}
               </NavLink>
@@ -40,7 +65,7 @@ const Header: FC = () => {
             </button>
             <input
               className={scss.search_input}
-              placeholder="Издоо..."
+              placeholder="Издөө..."
               type="text"
               required
             />
@@ -52,6 +77,14 @@ const Header: FC = () => {
               <IoMdClose className={scss.svg} />
             </button>
           </form>
+
+          <button
+            className={scss.burgerMenu}
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <IoMdClose /> : <RxHamburgerMenu />}
+          </button>
         </div>
       </div>
     </header>
