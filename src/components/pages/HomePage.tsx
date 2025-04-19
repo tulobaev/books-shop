@@ -5,9 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import HeroSlider from "../slider/HeroSlider";
 
 const categories = [
-  "Бизнес-книги",
   "Боевики, остросюжетная литература",
-  "Детективы",
   "Детские книги",
   "Зарубежная литература",
 ];
@@ -131,7 +129,7 @@ const HomePage: FC = () => {
                 <div key={index} className={scss.category_block}>
                   <div className={scss.h1}>
                     <h2 className={scss.category_title}>{category}</h2>
-                    <a href="aaa">''Баардык китептер''</a>
+                    <a href="/">''Баардык китептер''</a>
                   </div>
                   <div className={scss.scroll_wrapper}>
                     {visibleButtons[categoryId]?.left && (

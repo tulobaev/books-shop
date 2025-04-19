@@ -107,16 +107,10 @@ $transition: 0.3s ease;
       align-items: center;
       border-radius: 50%;
       background-color: #fff;
-
       .svg {
         width: 16px;
         height: 16px;
       }
-    }
-
-    .search_input:not(:placeholder-shown) ~ .reset_button {
-      opacity: 1;
-      visibility: visible;
     }
   }
 
