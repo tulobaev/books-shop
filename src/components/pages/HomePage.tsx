@@ -167,9 +167,7 @@ const HomePage: FC = () => {
                         .map((item, idx) => (
                           <div className={scss.cards} key={idx}>
                             <img
-                              src={
-                                item.img || "https://via.placeholder.com/150"
-                              }
+                              src={item.img}
                               alt="image"
                               className={scss.card_image}
                             />

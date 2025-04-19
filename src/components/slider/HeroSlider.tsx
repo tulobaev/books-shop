@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./HeroSlider.module.scss";
+import backgroundImage from "../../assets/photo_2025-04-19_17-37-19.jpg";
 
 interface SlideItem {
   id: number;
-  title: string;
-  text: string;
   imageUrl: string;
 }
 
@@ -21,21 +20,14 @@ const HeroSlider = () => {
   const sliderItems: SlideItem[] = [
     {
       id: 1,
-      title: "Популярные книги",
-      text: "Книги, которые понравились нашим читателям",
-      imageUrl:
-        "https://cdn.pixabay.com/photo/2018/08/04/11/30/draw-3583548_1280.png",
+      imageUrl: `${backgroundImage}`,
     },
     {
       id: 2,
-      title: "Новые поступления",
-      text: "Свежие издания этого месяца",
       imageUrl: "/images/new-arrivals.jpg",
     },
     {
       id: 3,
-      title: "Скидки недели",
-      text: "Специальные предложения и акции",
       imageUrl: "/images/weekly-discounts.jpg",
     },
   ];
@@ -138,15 +130,10 @@ const HeroSlider = () => {
             className={styles.slide}
             style={{
               backgroundImage: `url(${slide.imageUrl})`,
-              backgroundSize: "cover",
               backgroundPosition: "center",
+              backgroundSize: "cover",
             }}
-          >
-            <div className={styles.slideContent}>
-              <h2>{slide.title}</h2>
-              <p>{slide.text}</p>
-            </div>
-          </div>
+          ></div>
         ))}
       </div>
 
