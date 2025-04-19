@@ -13,7 +13,7 @@ export const links = [
     title: "Сайттын максаты",
   },
   {
-    link: "/",
+    link: "/contacts",
     element: "",
     title: "Байланыш",
   },

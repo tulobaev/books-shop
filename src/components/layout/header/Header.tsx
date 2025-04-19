@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { links } from "../../../constants/Link";
 import { IoMdClose } from "react-icons/io";
+import logo from "../../../assets/ChatGPT Image 19 апр. 2025 г., 17_42_51.png";
 
 const Header: FC = () => {
   const navigate = useNavigate();
@@ -12,10 +13,7 @@ const Header: FC = () => {
       <div className="container">
         <div className={scss.content}>
           <div onClick={() => navigate("/")} className={scss.logo}>
-            <img
-              src="https://img.pikbest.com/png-images/20241016/classic-book-logo-vector-illustration_10968775.png!w700wp"
-              alt="Logo"
-            />
+            <img src={logo} alt="Logo" />
           </div>
 
           <nav className={scss.nav}>
