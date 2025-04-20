@@ -3,9 +3,11 @@ import styles from "./HeroSlider.module.scss";
 import backgroundImage from "../../assets/photo_2025-04-19_17-37-19.jpg";
 import backgroundImage2 from "../../assets/photo_2025-04-20_17-06-52.jpg";
 
+
 interface SlideItem {
   id: number;
   imageUrl: string;
+  title: string;
 }
 
 const HeroSlider = () => {
@@ -22,14 +24,17 @@ const HeroSlider = () => {
     {
       id: 1,
       imageUrl: `${backgroundImage}`,
+      title: "",
     },
     {
       id: 2,
       imageUrl: `${backgroundImage2}`,
+      title: "Китептер - акыл-эстин перзенти",
     },
     {
       id: 3,
       imageUrl: "/images/weekly-discounts.jpg",
+      title: "",
     },
   ];
 
@@ -135,7 +140,9 @@ const HeroSlider = () => {
               backgroundSize: "cover",
               objectFit: "contain",
             }}
-          ></div>
+          >
+            <h1>{slide.title}</h1>
+          </div>
         ))}
       </div>
 

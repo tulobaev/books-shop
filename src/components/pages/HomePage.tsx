@@ -3,6 +3,7 @@ import scss from "./HomePage.module.scss";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import HeroSlider from "../slider/HeroSlider";
+import Category from "../category/Category";
 
 const categories = [
   "Боевики, остросюжетная литература",
@@ -13,22 +14,15 @@ const categories = [
 const exampleBooks = [
   {
     img: "",
-    title: "А. А. Беляев, И. Н.",
-    desc: `Описание книги`,
+    title: "Ахметов Сапарбай",
+    desc: `Описание книги adadas a aa aa daad  aad a  a ad dsadad aa `,
     year: 2023,
-    categories: ["Бизнес-книги", "Зарубежная литература"],
+    categories: ["Детские книги"],
   },
   {
     img: "",
     title: "Ахметов Сапарбай",
-    desc: `Описание книги`,
-    year: 2023,
-    categories: ["Боевики, остросюжетная литература"],
-  },
-  {
-    img: "",
-    title: "Ахметов Сапарбай",
-    desc: `Описание книги`,
+    desc: `Описание книги a dad asd  dda asda  asdasd aa  a adddaadada asdasad`,
     year: 2023,
     categories: ["Боевики, остросюжетная литература"],
   },
@@ -207,16 +201,7 @@ const HomePage: FC = () => {
             })}
           </div>
 
-          <div className={scss.content_category}>
-            <h1>Категории</h1>
-            <div className={scss.category}>
-              {categories.map((category, index) => (
-                <div key={index}>
-                  <p>{category}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Category />
         </div>
       </div>
     </section>
