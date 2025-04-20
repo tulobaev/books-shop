@@ -55,36 +55,38 @@ const Header: FC = () => {
             ))}
           </nav>
 
-          <form className={scss.search_form}>
-            <button
-              className={scss.search_button}
-              type="submit"
-              aria-label="Search"
-            >
-              <CiSearch className={scss.svg} />
-            </button>
-            <input
-              className={scss.search_input}
-              placeholder="Издөө..."
-              type="text"
-              required
-            />
-            <button
-              className={scss.reset_button}
-              type="reset"
-              aria-label="Clear"
-            >
-              <IoMdClose className={scss.svg} />
-            </button>
-          </form>
+          <div className={scss.menu}>
+            <form className={scss.search_form}>
+              <button
+                className={scss.search_button}
+                type="submit"
+                aria-label="Search"
+              >
+                <CiSearch className={scss.svg} />
+              </button>
+              <input
+                className={scss.search_input}
+                placeholder="Издөө..."
+                type="text"
+                required
+              />
+              <button
+                className={scss.reset_button}
+                type="reset"
+                aria-label="Clear"
+              >
+                <IoMdClose className={scss.svg} />
+              </button>
+            </form>
 
-          <button
-            className={scss.burgerMenu}
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <IoMdClose /> : <RxHamburgerMenu />}
-          </button>
+            <button
+              className={scss.burgerMenu}
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <IoMdClose /> : <RxHamburgerMenu />}
+            </button>
+          </div>
         </div>
       </div>
     </header>
