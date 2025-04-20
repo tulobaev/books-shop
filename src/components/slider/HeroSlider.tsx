@@ -141,7 +141,7 @@ const HeroSlider = () => {
               objectFit: "contain",
             }}
           >
-            <h1>{slide.title}</h1>
+            <h2>{slide.title}</h2>
           </div>
         ))}
       </div>
