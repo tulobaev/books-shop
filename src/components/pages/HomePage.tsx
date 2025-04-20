@@ -168,7 +168,7 @@ const HomePage: FC = () => {
                           <div className={scss.cards} key={idx}>
                             <img
                               src={item.img}
-                              alt="image"
+                              alt={item.title}
                               className={scss.card_image}
                             />
                             <div className={scss.text}>
