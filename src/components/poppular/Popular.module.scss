@@ -9,14 +9,14 @@
   }
   .content_box {
     .scrollableContent {
-      width: 100%; /* Ширина контейнера */
-      overflow-x: auto; /* Горизонтальный скролл */
+      width: 100%;
+      overflow-x: auto;
       display: flex;
-      gap: 20px; /* Отступы между карточками */
-      padding-bottom: 20px; /* Чтобы был виден скролл */
+      gap: 20px;
+      padding-bottom: 20px;
     }
     .content_cards {
-      min-width: 450px; /* Минимальная ширина карточки */
+      min-width: 450px;
       height: 340px;
       display: flex;
       align-items: start;
@@ -24,7 +24,7 @@
       box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border-radius: 0 12px 12px 0;
-      margin-bottom: 20px; /* Отступ между карточками */
+      margin-bottom: 20px;
       &:hover {
         transform: scale(1.012);
       }
