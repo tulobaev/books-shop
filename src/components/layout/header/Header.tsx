@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { links } from "../../../constants/Link";
+import logo from "../../../assets/image.webp";
 
 const Header: FC = () => {
   const navigate = useNavigate();
@@ -19,10 +20,7 @@ const Header: FC = () => {
       <div className="container">
         <div className={scss.content}>
           <div className={scss.logo} onClick={() => navigate("/")}>
-            <img
-              src="https://not-lain-background-removal.hf.space/file=/tmp/gradio/cc24c9e8397ed070ae266ce1a6353c7060481e74f5c466df14d0bba90f79b1df/image.webp"
-              alt="Logo"
-            />
+            <img src={logo} alt="LogoRight" />
           </div>
 
           <nav className={`${scss.nav} ${isMenuOpen ? scss.open : ""}`}>
@@ -30,7 +28,7 @@ const Header: FC = () => {
               <div className={scss.logoMobile} onClick={() => navigate("/")}>
                 <img
                   src="https://not-lain-background-removal.hf.space/file=/tmp/gradio/cc24c9e8397ed070ae266ce1a6353c7060481e74f5c466df14d0bba90f79b1df/image.webp"
-                  alt="Logo"
+                  alt="LogoRight"
                 />
               </div>
               <button
@@ -78,6 +76,13 @@ const Header: FC = () => {
                 <IoMdClose className={scss.svg} />
               </button>
             </form>
+
+            <div className={scss.logo}>
+              <img
+                src="https://not-lain-background-removal.hf.space/file=/tmp/gradio/cc24c9e8397ed070ae266ce1a6353c7060481e74f5c466df14d0bba90f79b1df/image.webp"
+                alt="logoLeft"
+              />
+            </div>
 
             <button
               className={scss.burgerMenu}

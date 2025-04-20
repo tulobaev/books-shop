@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./HeroSlider.module.scss";
 import backgroundImage from "../../assets/photo_2025-04-19_17-37-19.jpg";
-import Photonumber2 from "../../assets/photoNumber2.jpg";
+import backgroundImage2 from "../../assets/photo_2025-04-20_17-06-52.jpg";
+
 
 interface SlideItem {
   id: number;
@@ -27,7 +28,7 @@ const HeroSlider = () => {
     },
     {
       id: 2,
-      imageUrl: `${Photonumber2}`,
+      imageUrl: `${backgroundImage2}`,
       title: "Китептер - акыл-эстин перзенти",
     },
     {
@@ -137,6 +138,7 @@ const HeroSlider = () => {
               backgroundImage: `url(${slide.imageUrl})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
+              objectFit: "contain",
             }}
           >
             <h1>{slide.title}</h1>
