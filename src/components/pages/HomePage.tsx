@@ -4,6 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import HeroSlider from "../slider/HeroSlider";
 import Category from "../category/Category";
+import Popular from "../poppular/Popular";
 
 const categories = [
   "Боевики, остросюжетная литература",
@@ -61,7 +62,6 @@ const exampleBooks = [
     year: 2023,
     categories: ["Детективы"],
   },
-  // другие книги...
 ];
 
 const HomePage: FC = () => {
@@ -117,6 +117,7 @@ const HomePage: FC = () => {
         <div className={scss.box}>
           <div className={scss.content}>
             <HeroSlider />
+            <Popular />
             {categories.map((category, index) => {
               const categoryId = `scroll-${index}`;
               return (
