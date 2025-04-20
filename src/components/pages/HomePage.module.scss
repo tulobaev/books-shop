@@ -33,9 +33,9 @@
     padding-bottom: 10px;
     .cards {
       scroll-snap-align: start;
-      flex: 0 0 auto;
+      flex: 0 0 265px;
       width: 265px;
-      height: auto;
+      height: 400px;
       background-color: #f9f9f9;
       border-radius: 14px;
       box-shadow: 0 1px 14px rgba(0, 0, 0, 0.156);
@@ -63,7 +63,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        flex-grow: 1;
+        // flex-grow: 1;
 
         h2 {
           font-size: 1.1rem;
@@ -82,7 +82,7 @@
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
           line-clamp: 2;
-          margin-bottom: 8px;
+          margin-bottom: 4px;
         }
 
         span {
@@ -95,50 +95,10 @@
   }
 }
 
-.content_category {
-  // flex-basis: 250px;
-  width: 350px;
-  // width: 100%;
-  background: #fbfafa;
-  border-radius: 16px;
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.089);
-  padding: 24px;
-  position: sticky;
-  top: 130px;
-  height: 80vh;
-
-  .category {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-  h1 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #333;
-  }
-
-  .category p {
-    font-size: 16px;
-    font-weight: 500;
-    color: #444;
-    padding: 6px 6px;
-    cursor: pointer;
-    transition: color 0.3s ease, 0.3s ease;
-
-    &:hover {
-      background-color: #f0f0f0;
-      color: #000;
-      border-radius: 4px;
-    }
-  }
-}
-
 .content_cards {
   display: flex;
   overflow-x: auto;
-  padding-bottom: 10px;
+  padding: 20px;
   scrollbar-width: none;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
@@ -155,15 +115,6 @@
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.content_cards {
-  overflow-x: auto;
-  display: flex;
-  gap: 20px;
-  padding: 20px 40px;
-  scroll-behavior: smooth;
-  width: 100%;
 }
 
 .scroll_button {
@@ -210,17 +161,11 @@
 }
 
 @media (max-width: 1024px) {
-  .content_category {
-    width: 280px;
-  }
   .cards {
-    height: 200px;
+    height: 380px;
     .card_image {
       height: auto;
     }
-  }
-  .content_category {
-    display: none;
   }
 }
 
@@ -228,6 +173,11 @@
   .box {
     flex-direction: column;
     gap: 20px;
+  }
+
+  .cards {
+    height: 360px;
+    width: 200px;
   }
 
   .content {
@@ -264,7 +214,7 @@
 
 @media (max-width: 360px) {
   .cards {
-    width: 200px !important;
+    width: 200px;
   }
 
   .card_image {
