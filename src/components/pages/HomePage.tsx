@@ -3,14 +3,10 @@ import scss from "./HomePage.module.scss";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import HeroSlider from "../slider/HeroSlider";
-import Category from "../category/Category";
+import Category, { categories } from "../category/Category";
 import Popular from "../poppular/Popular";
-
-const categories = [
-  "Боевики, остросюжетная литература",
-  "Детские книги",
-  "Зарубежная литература",
-];
+import { useNavigate } from "react-router-dom";
+import DetailsPage from "../details/DetailsPage";
 
 const exampleBooks = [
   {
@@ -18,49 +14,28 @@ const exampleBooks = [
     title: "Ахметов Сапарбай",
     desc: `Описание книги adadas a aa aa daad  aad a  a ad dsadad aa `,
     year: 2023,
-    categories: ["Детские книги"],
+    categories: ["Математика, Логика"],
   },
   {
     img: "",
     title: "Ахметов Сапарбай",
     desc: `Описание книги a dad asd  dda asda  asdasd aa  a adddaadada asdasad`,
     year: 2023,
-    categories: ["Боевики, остросюжетная литература"],
+    categories: ["Физика, техника"],
   },
   {
     img: "",
     title: "Ахметов Сапарбай",
     desc: `Описание книги`,
     year: 2023,
-    categories: ["Боевики, остросюжетная литература"],
+    categories: ["Кыргыз тили жана адабияты"],
   },
   {
     img: "",
     title: "Ахметов Сапарбай",
     desc: `Описание книги`,
     year: 2023,
-    categories: ["Боевики, остросюжетная литература"],
-  },
-  {
-    img: "",
-    title: "Ахметов Сапарбай",
-    desc: `Описание книги`,
-    year: 2023,
-    categories: ["Боевики, остросюжетная литература"],
-  },
-  {
-    img: "",
-    title: "Ахметов Сапарбай",
-    desc: `Описание книги`,
-    year: 2023,
-    categories: ["Боевики, остросюжетная литература"],
-  },
-  {
-    img: "",
-    title: "Ахметов Сапарбай",
-    desc: `Описание книги ываы ываыва`,
-    year: 2023,
-    categories: ["Детективы"],
+    categories: ["Орус тили жана адабияты"],
   },
 ];
 
@@ -71,6 +46,7 @@ const HomePage: FC = () => {
   const [visibleButtons, setVisibleButtons] = useState<{
     [key: string]: { left: boolean; right: boolean };
   }>({});
+  const navigate = useNavigate();
 
   const handleMouseDown = (e: React.MouseEvent, categoryId: string) => {
     setIsDragging(true);
@@ -160,7 +136,11 @@ const HomePage: FC = () => {
                       {exampleBooks
                         .filter((item) => item.categories.includes(category))
                         .map((item, idx) => (
-                          <div className={scss.cards} key={idx}>
+                          <div
+                            onClick={() => navigate("/detail")}
+                            className={scss.cards}
+                            key={idx}
+                          >
                             <img
                               src={item.img}
                               alt={item.title}

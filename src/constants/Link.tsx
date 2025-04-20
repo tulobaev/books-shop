@@ -1,5 +1,5 @@
 import HomePage from "../components/pages/HomePage";
-import MenuP from "../components/pages/MenuP";
+import DetailsPage from "../components/details/DetailsPage";
 
 export const links = [
   {
@@ -9,12 +9,17 @@ export const links = [
   },
   {
     link: "/menu",
-    element: <MenuP />,
+    element: "",
     title: "Сайттын максаты",
   },
   {
     link: "/contacts",
     element: "",
     title: "Байланыш",
+  },
+  {
+    link: "/detail",
+    element: <DetailsPage />,
+    title: "",
   },
 ];
