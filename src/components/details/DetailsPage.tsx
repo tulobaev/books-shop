@@ -50,7 +50,7 @@ const DetailsPage: FC = () => {
               <button className={scss.download}>
                 <FaDownload /> Жүктөө
               </button>
-              <button className={scss.back}>← Артка</button>
+              <button className={scss.back}>←Артка</button>
             </div>
           </div>
 
