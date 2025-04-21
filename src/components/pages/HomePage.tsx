@@ -99,7 +99,7 @@ const HomePage: FC = () => {
                 <div key={index} className={scss.category_block}>
                   <div className={scss.h1}>
                     <h2 className={scss.category_title}>{category}</h2>
-                    <a href="/">''Баардык китептер''</a>
+                    <a href="/">''Баардык китептер'fg'</a>
                   </div>
                   <div className={scss.scroll_wrapper}>
                     {visibleButtons[categoryId]?.left && (
