@@ -38,14 +38,6 @@ const exampleBooks = [
   },
 ];
 
-const multiplyBooks = (books, times) => {
-  return Array(times)
-    .fill(null)
-    .flatMap(() => books);
-};
-
-const multiplied = multiplyBooks(exampleBooks, 8);
-
 const HomePage: FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -140,7 +132,7 @@ const HomePage: FC = () => {
                       onMouseLeave={handleMouseUp}
                       onScroll={() => checkScrollButtons(categoryId)}
                     >
-                      {multiplied
+                      {exampleBooks
                         .filter((item) => item.categories.includes(category))
                         .map((item, idx) => (
                           <div
