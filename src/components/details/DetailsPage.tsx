@@ -9,8 +9,10 @@ import {
   FaDownload,
   FaBookOpen,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const DetailsPage: FC = () => {
+  const navigate = useNavigate();
   return (
     <section className={scss.DetailsPage}>
       <div className="container">
@@ -50,7 +52,9 @@ const DetailsPage: FC = () => {
               <button className={scss.download}>
                 <FaDownload /> Жүктөө
               </button>
-              <button className={scss.back}>←Артка</button>
+              <button onClick={() => navigate("/")} className={scss.back}>
+                ←Артка
+              </button>
             </div>
           </div>
 

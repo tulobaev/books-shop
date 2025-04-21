@@ -1,5 +1,6 @@
 import HomePage from "../components/pages/HomePage";
 import DetailsPage from "../components/details/DetailsPage";
+import Contact from "../components/pages/Contact";
 
 export const links = [
   {
@@ -14,7 +15,7 @@ export const links = [
   },
   {
     link: "/contacts",
-    element: "",
+    element: <Contact />,
     title: "Байланыш",
   },
   {

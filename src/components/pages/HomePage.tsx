@@ -9,34 +9,42 @@ import { useNavigate } from "react-router-dom";
 
 const exampleBooks = [
   {
-    img: "",
+    img: "https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg?s=612x612&w=0&k=20&c=G21-jgMQruADLPDBk7Sf1vVvCEtPiJD3Rf39AeB95yI=",
     title: "Ахметов Сапарбай",
     desc: `Описание книги adadas a aa aa daad  aad a  a ad dsadad aa `,
     year: 2023,
     categories: ["Математика, Логика"],
   },
   {
-    img: "",
+    img: "https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg?s=612x612&w=0&k=20&c=G21-jgMQruADLPDBk7Sf1vVvCEtPiJD3Rf39AeB95yI=",
     title: "Ахметов Сапарбай",
     desc: `Описание книги a dad asd  dda asda  asdasd aa  a adddaadada asdasad`,
     year: 2023,
     categories: ["Физика, техника"],
   },
   {
-    img: "",
+    img: "https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg?s=612x612&w=0&k=20&c=G21-jgMQruADLPDBk7Sf1vVvCEtPiJD3Rf39AeB95yI=",
     title: "Ахметов Сапарбай",
     desc: `Описание книги`,
     year: 2023,
     categories: ["Кыргыз тили жана адабияты"],
   },
   {
-    img: "",
+    img: "https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg?s=612x612&w=0&k=20&c=G21-jgMQruADLPDBk7Sf1vVvCEtPiJD3Rf39AeB95yI=",
     title: "Ахметов Сапарбай",
     desc: `Описание книги`,
     year: 2023,
     categories: ["Орус тили жана адабияты"],
   },
 ];
+
+const multiplyBooks = (books, times) => {
+  return Array(times)
+    .fill(null)
+    .flatMap(() => books);
+};
+
+const multiplied = multiplyBooks(exampleBooks, 8);
 
 const HomePage: FC = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -132,7 +140,7 @@ const HomePage: FC = () => {
                       onMouseLeave={handleMouseUp}
                       onScroll={() => checkScrollButtons(categoryId)}
                     >
-                      {exampleBooks
+                      {multiplied
                         .filter((item) => item.categories.includes(category))
                         .map((item, idx) => (
                           <div
