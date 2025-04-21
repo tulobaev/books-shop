@@ -3,7 +3,6 @@ import styles from "./HeroSlider.module.scss";
 import backgroundImage from "../../assets/photo_2025-04-19_17-37-19.jpg";
 import backgroundImage2 from "../../assets/photo_2025-04-20_17-06-52.jpg";
 
-
 interface SlideItem {
   id: number;
   imageUrl: string;
@@ -19,17 +18,16 @@ const HeroSlider = () => {
   const sliderContainer = useRef<HTMLDivElement>(null);
   const sliderTimer = useRef<number | null>(null);
 
-  // Данные для слайдов с URL изображений
   const sliderItems: SlideItem[] = [
-    {
-      id: 1,
-      imageUrl: `${backgroundImage}`,
-      title: "",
-    },
     {
       id: 2,
       imageUrl: `${backgroundImage2}`,
       title: "Китептер - акыл-эстин перзенти",
+    },
+    {
+      id: 1,
+      imageUrl: `${backgroundImage}`,
+      title: "",
     },
     {
       id: 3,
@@ -67,7 +65,7 @@ const HeroSlider = () => {
         behavior: "smooth",
       });
 
-      setTimeout(() => setAutoSlide(true), 3000);
+      setTimeout(() => setAutoSlide(true), 4000);
     }
   };
 
@@ -92,12 +90,12 @@ const HeroSlider = () => {
       });
     }
     setAutoSlide(false);
-    setTimeout(() => setAutoSlide(true), 3000);
+    setTimeout(() => setAutoSlide(true), 4000);
   };
 
   useEffect(() => {
     if (autoSlide) {
-      sliderTimer.current = window.setInterval(nextSlide, 3000);
+      sliderTimer.current = window.setInterval(nextSlide, 4000);
     }
     return () => {
       if (sliderTimer.current) {

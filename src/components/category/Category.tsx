@@ -1,16 +1,18 @@
 import { FC } from "react";
 import scss from "./Category.module.scss";
 
-const categories = [
-  "Боевики, остросюжетная литература",
-  "Детские книги",
-  "Зарубежная литература",
+export const categories = [
+  "Математика, Логика",
+  "Физика, техника",
+  "Кыргыз тили жана адабияты",
+  "Орус тили жана адабияты",
+  "сюда ещё добавим категори....",
 ];
 
 const Category: FC = () => {
   return (
     <div className={scss.content_category}>
-      <h1>Категории</h1>
+      <h1>Категориялар</h1>
       <div className={scss.category}>
         {categories.map((category, index) => (
           <div key={index}>
