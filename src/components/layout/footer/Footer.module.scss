@@ -1,0 +1,69 @@
+.footer {
+  background: linear-gradient(to right, #111827, #1f2937);
+  color: #ffffff;
+  padding: 3rem 0;
+  font-family: "Inter", sans-serif;
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .logoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      align-items: flex-start;
+    }
+
+    .logo {
+      height: 3rem;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .missionSection {
+    @media (min-width: 768px) {
+      text-align: left;
+    }
+
+    p {
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+  }
+
+  .learnSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      align-items: flex-start;
+    }
+
+    .learnLink {
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .booksIcon {
+      height: 3rem;
+    }
+  }
+}

@@ -137,7 +137,7 @@ const HomePage: FC = () => {
                         .filter((item) => item.categories.includes(category))
                         .map((item, idx) => (
                           <div
-                            onClick={() => navigate("/detail")}
+                            onClick={() => navigate("/details")}
                             className={scss.cards}
                             key={idx}
                           >
