@@ -6,7 +6,6 @@ import HeroSlider from "../slider/HeroSlider";
 import Category, { categories } from "../category/Category";
 import Popular from "../poppular/Popular";
 import { useNavigate } from "react-router-dom";
-import DetailsPage from "../details/DetailsPage";
 
 const exampleBooks = [
   {
