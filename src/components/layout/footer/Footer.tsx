@@ -1,35 +1,18 @@
-import logo from "../../../assets/image.webp";
-import styles from "./Footer.module.scss";
+import { FC } from "react";
+import scss from "./Footer.module.scss";
 
-const Footer = () => {
+const Footer: FC = () => {
   return (
-    <footer className={styles.footer}>
+    <section id={scss.Footer}>
       <div className="container">
-        <div className={styles.content}>
-          <div className={styles.logoSection}>
-            <img src={logo} alt="Logo" className={styles.logo} />
-          </div>
-
-          <div className={styles.missionSection}>
-            <p>
-              Биз билимди жеткиликтүү кылуу менен, ар бир адамдын окуу, изилдөө
-              жана өсүү укугун колдойбуз!
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.bottomBar}>
-          <p>
-            <a
-              href="https://x.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.bottomLink}
-            ></a>
-          </p>
+        <div className={scss.content}>
+          <h1>
+            Биз билимди жеткиликтүү кылуу менен, ар бир адамдын окуу, изилдөө
+            жана өсүү укугун колдойбуз!
+          </h1>
         </div>
       </div>
-    </footer>
+    </section>
   );
 };
 
