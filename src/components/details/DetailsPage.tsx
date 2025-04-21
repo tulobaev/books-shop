@@ -33,7 +33,7 @@ const DetailsPage: FC = () => {
                 <FaEye /> <strong>Көрүүлөр:</strong> <span>1,234</span>
               </p>
               <p className={scss.rating}>
-                <FaHeart /> <strong>Лайтар:</strong> <span>527</span>
+                <FaHeart /> <strong>Жакmы:</strong> <span>527</span>
               </p>
             </div>
 
