@@ -3,12 +3,12 @@ import scss from "./Popular.module.scss";
 import { Pagination, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-// Здесь должны быть данные из API
+// Временные данные
 const books = new Array(40).fill(0).map((_, i) => ({
   id: i + 1,
   img: "https://static-cse.canva.com/blob/585523/.png",
   title: `Автор ${i + 1}`,
-  desc: `Описание книги номер ${i + 1}`,
+  desc: `Описание книги номер `,
   year: 2025,
 }));
 
@@ -18,7 +18,7 @@ const Popular: FC = () => {
   const itemPerPages = 20;
   const count = Math.ceil(books.length / itemPerPages);
 
-  function handlerDataPage() {
+  function getCurrentPageBooks() {
     let start = (page - 1) * itemPerPages;
     let end = start + itemPerPages;
     return books.slice(start, end);
@@ -35,7 +35,7 @@ const Popular: FC = () => {
       <h1>Популярдуу китептер</h1>
 
       <div className={scss.content}>
-        {handlerDataPage().map((book) => (
+        {getCurrentPageBooks().map((book) => (
           <div
             onClick={() => navigate("/details")}
             className={scss.cards}
@@ -51,16 +51,18 @@ const Popular: FC = () => {
         ))}
       </div>
 
-      <div className={scss.pagination}>
-        <Stack spacing={2}>
-          <Pagination
-            onChange={handlePageChange}
-            count={count}
-            shape="rounded"
-            color="primary"
-          />
-        </Stack>
-      </div>
+      {books.length > itemPerPages && (
+        <div className={scss.pagination}>
+          <Stack spacing={2}>
+            <Pagination
+              onChange={handlePageChange}
+              count={count}
+              shape="rounded"
+              color="primary"
+            />
+          </Stack>
+        </div>
+      )}
     </section>
   );
 };

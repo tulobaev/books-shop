@@ -1,0 +1,30 @@
+.box {
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.089);
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
+  .content_cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content_cards {
+    padding: 10px 0;
+    gap: 16px;
+  }
+}
