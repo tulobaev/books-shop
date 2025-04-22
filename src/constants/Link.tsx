@@ -9,11 +9,6 @@ export const links = [
     title: "Башкы бет",
   },
   {
-    link: "/menu",
-    element: "",
-    title: "Сайттын максаты",
-  },
-  {
     link: "/contacts",
     element: <Contact />,
     title: "Байланыш",
