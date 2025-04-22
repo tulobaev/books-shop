@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./HeroSlider.module.scss";
 import backgroundImage from "../../assets/photo_2025-04-19_17-37-19.jpg";
 import backgroundImage2 from "../../assets/photo_2025-04-20_17-06-52.jpg";
+import backgroundImage3 from "../../assets/photo_2025-04-22_17-05-50.jpg";
 
 interface SlideItem {
   id: number;
@@ -31,7 +32,7 @@ const HeroSlider = () => {
     },
     {
       id: 3,
-      imageUrl: "/images/weekly-discounts.jpg",
+      imageUrl: `${backgroundImage3}`,
       title: "",
     },
   ];
