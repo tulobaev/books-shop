@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import scss from "./Popular.module.scss";
 import { Pagination, Stack } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 // Здесь должны быть данные из API
 const books = new Array(40).fill(0).map((_, i) => ({
@@ -12,6 +13,7 @@ const books = new Array(40).fill(0).map((_, i) => ({
 }));
 
 const Popular: FC = () => {
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const itemPerPages = 20;
   const count = Math.ceil(books.length / itemPerPages);
@@ -34,7 +36,11 @@ const Popular: FC = () => {
 
       <div className={scss.content}>
         {handlerDataPage().map((book) => (
-          <div className={scss.cards} key={book.id}>
+          <div
+            onClick={() => navigate("/details")}
+            className={scss.cards}
+            key={book.id}
+          >
             <img src={book.img} alt={book.title} />
             <div className={scss.text}>
               <h2>{book.title}</h2>
