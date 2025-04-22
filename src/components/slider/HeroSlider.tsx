@@ -138,6 +138,8 @@ const HeroSlider = () => {
               backgroundPosition: "center",
               backgroundSize: "cover",
               objectFit: "contain",
+              width: "100%", // or specific value like 500px
+              height: "450px", // or specific value like 300px
             }}
           >
             <h2>{slide.title}</h2>
