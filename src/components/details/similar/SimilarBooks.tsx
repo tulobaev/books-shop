@@ -1,7 +1,9 @@
 import { FC } from "react";
 import scss from "./SimilarBook.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const SimilarBooks: FC = () => {
+  const navigate = useNavigate();
   const books = new Array(18).fill(0).map((_, i) => ({
     id: i + 1,
     img: "https://blog.mann-ivanov-ferber.ru/wp-content/uploads/2023/06/image7-6.jpg",
@@ -15,7 +17,11 @@ const SimilarBooks: FC = () => {
       <h1>Окшош китептер</h1>
       <div className={scss.content}>
         {books.map((book, idx) => (
-          <div className={scss.cards} key={idx}>
+          <div
+            onClick={() => navigate("/details")}
+            className={scss.cards}
+            key={idx}
+          >
             <img src={book.img} alt={book.author} />
             <div className={scss.text}>
               <h2>{book.author}</h2>

@@ -2,8 +2,10 @@ import { FC, useState } from "react";
 import scss from "./HomePage.module.scss";
 import HeroSlider from "../slider/HeroSlider";
 import Popular from "../poppular/Popular";
-import { useNavigate } from "react-router-dom";
+import Category from "../category/Category";
+import BookList from "../bookList/BookList";
 
+// Пример данных из API
 const exampleBooks = [
   {
     book_image:
@@ -52,6 +54,7 @@ const exampleBooks = [
   },
 ];
 
+// Пример категории из API
 const categories = [
   "Математика, Логика",
   "Физика, техника",
@@ -61,7 +64,6 @@ const categories = [
 ];
 
 const HomePage: FC = () => {
-  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const filteredBooks = exampleBooks.filter(
@@ -72,62 +74,19 @@ const HomePage: FC = () => {
     <section className={scss.HomePage}>
       <div className="container">
         <div className={scss.box}>
-          <div className={scss.content_category}>
-            <h1>Категориялар</h1>
-            <div className={scss.category}>
-              {categories.map((category, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    setSelectedCategory(category);
-                  }}
-                  className={
-                    selectedCategory === category
-                      ? `${scss.category_item} ${scss.active}`
-                      : scss.category_item
-                  }
-                >
-                  <p>{category}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Category
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onSelect={setSelectedCategory}
+          />
 
           <div className={scss.content}>
             <HeroSlider />
-
-            <div className={scss.books}>
-              {!selectedCategory && <Popular />}
-              <h1>{selectedCategory}</h1>
-              {selectedCategory && (
-                <div className={scss.content_cards}>
-                  {filteredBooks.length > 0 ? (
-                    filteredBooks.map((item, idx) => (
-                      <div
-                        onClick={() => navigate("/details")}
-                        className={scss.cards}
-                        key={idx}
-                      >
-                        <img
-                          src={item.book_image}
-                          alt={item.book_author}
-                          className={scss.card_image}
-                        />
-                        <div className={scss.text}>
-                          <h2>{item.book_author}</h2>
-                          <p>
-                            {item.description} -{" "}
-                            <span>{item.loading_time}</span>
-                          </p>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <p>Книги не найдены для категории: {selectedCategory}</p>
-                  )}
-                </div>
-              )}
-            </div>
+            {!selectedCategory && <Popular />}
+            <BookList
+              books={filteredBooks}
+              selectedCategory={selectedCategory}
+            />
           </div>
         </div>
       </div>
