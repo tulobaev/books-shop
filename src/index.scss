@@ -8,20 +8,8 @@
 }
 
 body {
-  background: url(https://img.freepik.com/premium-vector/book-seamless-vector-pattern-doodle-background_629110-361.jpg?semt=ais_hybrid&w=740)
-    no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
   font-family: "Roboto", sans-serif;
-  position: relative;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-color: rgba(255, 255, 255, 0.789);
-  z-index: -1;
+  background-color: #f8f8f8;
 }
 
 .container {
@@ -29,6 +17,7 @@ body::before {
   max-width: 1440px;
   margin-inline: auto;
   padding-inline: 40px;
+
   @media (max-width: 600px) {
     padding-inline: 20px;
   }
