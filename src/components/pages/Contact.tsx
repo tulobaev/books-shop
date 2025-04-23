@@ -4,11 +4,11 @@ import whatsapp from "../../assets/whatsapp.png";
 const Contact: FC = () => {
   return (
     <section
-      // style={{
-      //   background: `url(${whatsapp})no-repeat center`,
-      //   height: "90vh",
-      //   width: "auto",
-      // }}
+      style={{
+        background: `url(${whatsapp})no-repeat center`,
+        height: "90vh",
+        width: "auto",
+      }}
       className={scss.Contact}
       id="contact"
     >
