@@ -1,6 +1,7 @@
 import HomePage from "../components/pages/HomePage";
 import DetailsPage from "../components/details/DetailsPage";
 import Contact from "../components/pages/Contact";
+import NotFoundPage from "../components/pages/NotFoundPage";
 
 export const links = [
   {
@@ -16,5 +17,9 @@ export const links = [
   {
     link: "/details",
     element: <DetailsPage />,
+  },
+  {
+    link: "*",
+    element: <NotFoundPage />,
   },
 ];
