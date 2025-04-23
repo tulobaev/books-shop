@@ -75,6 +75,7 @@
     }
   }
 }
+// Адаптация
 
 @media (max-width: 790px) {
   .content_category {
@@ -85,10 +86,11 @@
     padding: 16px;
     border-radius: 12px;
     background: #fff;
+    margin-bottom: 20px;
 
     h1 {
       font-size: 20px;
-      margin-bottom: 17px;
+      margin-bottom: 12px;
     }
 
     .category {
@@ -140,7 +142,7 @@
 
     h1 {
       font-size: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .category {
