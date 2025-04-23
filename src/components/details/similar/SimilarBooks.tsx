@@ -4,11 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 const SimilarBooks: FC = () => {
   const navigate = useNavigate();
-  const books = new Array(18).fill(0).map((_, i) => ({
+  const books = new Array(20).fill(0).map((_, i) => ({
     id: i + 1,
-    img: "https://blog.mann-ivanov-ferber.ru/wp-content/uploads/2023/06/image7-6.jpg",
-    author: `Алыкул Осмонов  фвф вфыфв фвыфвф вфвфыв фвыфыв${i + 1}`,
-    description: `Поэзия о жизни и любви. фвыф ыффвы  фвфы фывфы в ${i + 1}`,
+    img: "https://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg",
+    author: `Алыкул Осмонов  фвф вфыфв фвыфвф вфвфыв фвыфыв asda sassad${
+      i + 1
+    }`,
+    description: `Поэзия о жизни и любви. фвыф ыффвы  фвфы фывфы в  da asda sad a${
+      i + 1
+    }`,
     year: 2025,
   }));
 

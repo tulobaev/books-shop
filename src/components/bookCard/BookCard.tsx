@@ -19,9 +19,8 @@ const BookCard: React.FC<Props> = ({ book, onClick }) => (
     />
     <div className={scss.text}>
       <h2>{book.book_author}</h2>
-      <p>
-        {book.description} - <span>{book.loading_time}</span>
-      </p>
+      <p>{book.description}</p>
+      <span>{book.loading_time}</span>
     </div>
   </div>
 );

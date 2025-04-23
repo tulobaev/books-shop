@@ -33,7 +33,7 @@ const HeroSlider = () => {
     {
       id: 3,
       imageUrl: `${backgroundImage3}`,
-      title: "",
+      title: "Бул китептерди онлайн оку",
     },
   ];
 
