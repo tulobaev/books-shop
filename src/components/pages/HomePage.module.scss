@@ -1,6 +1,5 @@
 .HomePage {
   padding-block: 40px;
-
   .box {
     display: flex;
     gap: 20px;
@@ -18,15 +17,23 @@
   }
 }
 
+@media (max-width: 790px) {
+  .HomePage {
+    padding-block: 20px;
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 768px) {
   .box {
     flex-direction: column;
     gap: 20px;
-  }
-  .content {
-    max-width: 100%;
-  }
-  .category_block {
-    padding: 16px;
+    .content {
+      max-width: 100%;
+      gap: 0px;
+    }
   }
 }
