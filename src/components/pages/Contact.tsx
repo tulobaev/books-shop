@@ -1,9 +1,17 @@
 import { FC } from "react";
 import scss from "./Contact.module.scss";
-
+import whatsapp from "../../assets/whatsapp.png";
 const Contact: FC = () => {
   return (
-    <section className={scss.Contact} id="contact">
+    <section
+      // style={{
+      //   background: `url(${whatsapp})no-repeat center`,
+      //   height: "90vh",
+      //   width: "auto",
+      // }}
+      className={scss.Contact}
+      id="contact"
+    >
       <div className="container">
         <div className={scss.content}>
           <svg
