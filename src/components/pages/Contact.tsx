@@ -46,7 +46,7 @@ const Contact: FC = () => {
             ></path>
           </svg>
           <a
-            href="https://wa.me/996XXXYYYZZZ"
+            href="https://wa.me/996556799752"
             target="_blank"
             rel="noopener noreferrer"
             className={scss.button}

@@ -16,6 +16,5 @@ export const links = [
   {
     link: "/details",
     element: <DetailsPage />,
-    title: "",
   },
 ];
