@@ -45,6 +45,7 @@ const Contact: FC = () => {
             </div>
           </div>
         </div>
+        <div className={scss.content}>Contact</div>
       </div>
     </section>
   );

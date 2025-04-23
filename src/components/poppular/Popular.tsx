@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import scss from "./Popular.module.scss";
 import { Pagination, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import ScrollTo from "../avtoScroll/ScrollToTop";
+import ScrollToTop from "../avtoScroll/AvtoScroll";
 
 // Временные данные
 const books = new Array(40).fill(0).map((_, i) => ({
@@ -38,7 +38,6 @@ const Popular: FC = () => {
 
   return (
     <section id={scss.Popular}>
-      <ScrollTo />
       <h1>Популярдуу китептер</h1>
 
       <div className={scss.content}>
@@ -66,7 +65,9 @@ const Popular: FC = () => {
               count={count}
               shape="rounded"
               color="primary"
+              page={page}
             />
+            <ScrollToTop key={page} />
           </Stack>
         </div>
       )}

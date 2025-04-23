@@ -1,6 +1,5 @@
 .HomePage {
   padding-block: 40px;
-
   .box {
     display: flex;
     gap: 20px;
@@ -17,16 +16,38 @@
     }
   }
 }
-
-@media (max-width: 768px) {
+@media (max-width: 790px) {
+  .HomePage {
+    padding-block: 20px;
+  }
   .box {
     flex-direction: column;
     gap: 20px;
+
+    .content {
+      max-width: 100%;
+    }
+
+    .category_block {
+      width: 100%;
+      padding: 16px;
+    }
   }
-  .content {
-    max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  .HomePage {
+    padding-block: 15px;
   }
-  .category_block {
-    padding: 16px;
+  .box {
+    gap: 15px;
+
+    .content {
+      gap: 20px;
+    }
+
+    .category_block {
+      padding: 12px;
+    }
   }
 }
