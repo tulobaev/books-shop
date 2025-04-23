@@ -7,10 +7,8 @@ const SimilarBooks: FC = () => {
   const books = new Array(20).fill(0).map((_, i) => ({
     id: i + 1,
     img: "https://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg",
-    author: `Алыкул Осмонов  фвф вфыфв фвыфвф вфвфыв фвыфыв asda sassad${
-      i + 1
-    }`,
-    description: `Поэзия о жизни и любви. фвыф ыффвы  фвфы фывфы в  da asda sad a${
+    author: `Алыкул Осмонов${i + 1}`,
+    description: `Поэзия о жизни и любви. a a a a a a a a a a aa  aa a aa a a a ${
       i + 1
     }`,
     year: 2025,

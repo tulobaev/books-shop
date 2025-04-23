@@ -30,6 +30,10 @@ const Popular: FC = () => {
     value: number
   ) => {
     setPage(value);
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
   };
 
   return (

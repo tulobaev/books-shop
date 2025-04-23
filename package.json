@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@2gis/mapgl": "^1.58.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.0.2",
+    "@react-google-maps/api": "^2.20.6",
     "@reduxjs/toolkit": "^2.7.0",
     "aos": "^2.3.4",
     "react": "^19.0.0",
