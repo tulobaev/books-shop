@@ -179,6 +179,15 @@ $accent: #007aff;
     }
   }
 
+  @media (max-width: 950px) {
+    .nav {
+      gap: 20px;
+    }
+    .search_form {
+      --width-of-input: 180px;
+    }
+  }
+
   @media (max-width: 870px) {
     .content,
     .nav,
@@ -265,7 +274,7 @@ $accent: #007aff;
     .search_form {
       padding: 1px 8px;
       width: 100%;
-      max-width: 150px;
+      max-width: none;
       height: 35px;
       --width-of-input: 100%;
     }
