@@ -198,6 +198,9 @@ $accent: #007aff;
     .content {
       position: relative;
     }
+    .logo img {
+      max-width: 55px;
+    }
     .burgerMenu {
       display: flex;
       align-items: center;
@@ -220,7 +223,7 @@ $accent: #007aff;
       background: var(--bg-primary);
       flex-direction: column;
       justify-content: flex-start;
-      padding: 18px 20px;
+      padding: 10px 20px;
       box-shadow: $shadow;
       transition: right $transition;
       z-index: 1000;
@@ -239,7 +242,7 @@ $accent: #007aff;
           display: flex;
 
           img {
-            max-width: 60px;
+            max-width: 58px;
           }
         }
         .closeButton {
@@ -267,11 +270,7 @@ $accent: #007aff;
       --width-of-input: 100%;
     }
   }
-
   @media (max-width: 480px) {
-    .header {
-      padding-block: 0px;
-    }
     .logo img {
       max-width: 50px;
     }
@@ -284,5 +283,10 @@ $accent: #007aff;
     .menu {
       gap: 20px;
     }
+  }
+}
+@media (max-width: 480px) {
+  .header {
+    padding-block: 5px;
   }
 }
