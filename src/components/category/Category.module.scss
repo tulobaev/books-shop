@@ -43,6 +43,7 @@
   }
 
   .poppular_button {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -71,7 +72,7 @@
   }
 }
 
-@media (max-width: 766px) {
+@media (max-width: 790px) {
   .content_category {
     display: none;
   }
