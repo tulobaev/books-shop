@@ -74,14 +74,23 @@ const HomePage: FC = () => {
     <section className={scss.HomePage}>
       <div className="container">
         <div className={scss.box}>
-          <Category
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onSelect={setSelectedCategory}
-          />
+          <div className={scss.category_block}>
+            <Category
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onSelect={setSelectedCategory}
+            />
+          </div>
 
           <div className={scss.content}>
             <HeroSlider />
+            <div className={scss.category_block_mobile}>
+              <Category
+                categories={categories}
+                selectedCategory={selectedCategory}
+                onSelect={setSelectedCategory}
+              />
+            </div>
             {!selectedCategory && <Popular />}
             <BookList
               books={filteredBooks}

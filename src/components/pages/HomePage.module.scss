@@ -14,6 +14,10 @@
       max-width: 1050px;
       min-width: 330px;
     }
+
+    .category_block_mobile {
+      display: none;
+    }
   }
 }
 @media (max-width: 790px) {
@@ -26,11 +30,12 @@
 
     .content {
       max-width: 100%;
+      .category_block_mobile {
+        display: flex;
+      }
     }
-
     .category_block {
-      width: 100%;
-      padding: 16px;
+      display: none;
     }
   }
 }
@@ -44,10 +49,6 @@
 
     .content {
       gap: 20px;
-    }
-
-    .category_block {
-      padding: 12px;
     }
   }
 }
