@@ -23,7 +23,10 @@ const Contact: FC = () => {
                 <FaMapMarkerAlt /> Дарек: ул Насирдина Исанова, 73a/1, г. Ош
               </p>
               <p>
-                <FaPhoneAlt /> Телефон: +996 777 727 932
+                <FaPhoneAlt />
+                <a style={{ color: "#555" }} href="tel:+996 777 727 932">
+                  Телефон: +996 777 727 932
+                </a>
               </p>
               <p>Иш убактысы: дүйшөмбү-жума саат 9:00дөн 18:00гө чейин</p>
               <div className={scss.btn}>
@@ -45,7 +48,6 @@ const Contact: FC = () => {
             </div>
           </div>
         </div>
-        <div className={scss.content}>Contact</div>
       </div>
     </section>
   );
