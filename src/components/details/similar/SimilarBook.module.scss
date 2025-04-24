@@ -11,7 +11,7 @@
     color: #fff;
     background-color: #3870ffe7;
     font-weight: 500;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.386);
     border-radius: 10px;
     position: sticky;
@@ -20,6 +20,7 @@
     z-index: 100;
     @media (max-width: 600px) {
       top: 100px;
+      padding: 0.8rem;
     }
     @media (max-width: 481px) {
       top: 80px;
@@ -47,7 +48,7 @@
 
 .cards {
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.271);
   overflow: hidden;
   display: flex;
@@ -56,14 +57,18 @@
   margin-bottom: 15px;
 
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  @media (max-width: 790px) {
+    border-radius: 12px;
   }
 
   @media (max-width: 470px) {
     flex-direction: row;
     align-items: stretch;
-    border-radius: 14px;
+    margin-bottom: 8px;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.144);
   }
 
   img {
@@ -90,11 +95,11 @@
       height: 275px;
     }
     @media (max-width: 740px) {
-      height: 255px;
+      height: 245px;
     }
     @media (max-width: 470px) {
       width: 40%;
-      height: auto;
+      height: 170px;
       object-fit: cover;
     }
   }
@@ -111,9 +116,8 @@
     }
     @media (max-width: 470px) {
       padding: 10px 12px;
-      width: 100%;
       justify-content: space-between;
-      gap: 21px;
+      gap: 10px;
     }
 
     h2 {
@@ -128,15 +132,15 @@
       -webkit-line-clamp: 1;
 
       @media (max-width: 470px) {
-        font-size: 1rem;
+        font-size: 17px;
         -webkit-line-clamp: 2;
-        font-weight: 500;
+        font-weight: 600;
       }
     }
 
     p {
       font-size: 0.9rem;
-      color: #666;
+      color: #333;
       line-height: 1.4;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -145,7 +149,7 @@
       -webkit-line-clamp: 2;
 
       @media (max-width: 470px) {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         -webkit-line-clamp: 3;
       }
     }

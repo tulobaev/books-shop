@@ -8,7 +8,7 @@ import ScrollToTop from "../avtoScroll/AvtoScroll";
 const books = new Array(40).fill(0).map((_, i) => ({
   id: i + 1,
   img: "https://static-cse.canva.com/blob/585523/.png",
-  title: `Автор ${i + 1}`,
+  title: `Автор ada asdasda  ${i + 1}`,
   desc: `Описание книги номер `,
   year: 2025,
 }));
@@ -32,14 +32,13 @@ const Popular: FC = () => {
     setPage(value);
     window.scrollTo({
       top: 0,
-      behavior: "instant",
+      behavior: "smooth",
     });
   };
 
   return (
     <section id={scss.Popular}>
       <h1>Популярдуу китептер</h1>
-
       <div className={scss.content}>
         {getCurrentPageBooks().map((book) => (
           <div

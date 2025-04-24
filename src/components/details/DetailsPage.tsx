@@ -55,6 +55,9 @@ const DetailsPage: FC = () => {
                 <button className={scss.download}>
                   <FaDownload /> Жүктөө
                 </button>
+                <button className={scss.like}>
+                  <FaHeart style={{ color: "white" }} /> Жакты
+                </button>
                 <button onClick={() => navigate("/")} className={scss.back}>
                   ←Артка
                 </button>

@@ -136,7 +136,7 @@ const HeroSlider = () => {
             style={{
               backgroundImage: `url(${slide.imageUrl})`,
               backgroundPosition: "center",
-              backgroundSize: "cover",
+              backgroundSize: "100%",
               objectFit: "contain",
             }}
           >
