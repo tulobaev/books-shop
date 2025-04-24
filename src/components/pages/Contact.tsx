@@ -1,6 +1,6 @@
 import { FC } from "react";
 import scss from "./Contact.module.scss";
-import MapComponent from "../../GooogleMap/MapComponent";
+import MapComponent from "../../2gis/MapComponent";
 import {
   FaWhatsapp,
   FaInstagram,
@@ -20,24 +20,24 @@ const Contact: FC = () => {
             <div className={scss.card}>
               <h1>Биз жайгашканбыз</h1>
               <p>
-                <FaMapMarkerAlt /> Дарек: ул. Токтогула 25, Бишкек, Кыргызстан
+                <FaMapMarkerAlt /> Дарек: ул Насирдина Исанова, 73a/1, г. Ош
               </p>
               <p>
-                <FaPhoneAlt /> Телефон: +996 555 555 555
+                <FaPhoneAlt /> Телефон: +996 777 727 932
               </p>
               <p>Иш убактысы: дүйшөмбү-жума саат 9:00дөн 18:00гө чейин</p>
               <div className={scss.btn}>
                 <a
-                  href="https://wa.me/996555555555"
+                  href="https://wa.me/996777727932"
                   target="_blank"
-                  className={scss.cardButton}
+                  className={scss.cardButton1}
                 >
                   <FaWhatsapp /> Ватсапка жаз
                 </a>
                 <a
-                  href="https://www.instagram.com/your_profile"
+                  href="https://www.instagram.com/oshmpu_official?igsh=MXRrNmI3YjJkb2J0eg=="
                   target="_blank"
-                  className={scss.cardButton}
+                  className={scss.cardButton2}
                 >
                   <FaInstagram /> Instagram
                 </a>

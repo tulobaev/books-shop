@@ -139,6 +139,15 @@
         }
       }
 
+      .like {
+        background: linear-gradient(to right, #ff6a00, #ee0979);
+        color: #fff;
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 18px rgba(167, 89, 40, 0.3);
+        }
+      }
+
       .download {
         background: linear-gradient(to right, #17a2b8, #0d8db8);
         color: #fff;
