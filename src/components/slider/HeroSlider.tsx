@@ -132,12 +132,15 @@ const HeroSlider = () => {
         {sliderItems.map((slide) => (
           <div
             key={slide.id}
-            className={styles.slide}
+            className={`${styles.slide} ${
+              slide.imageUrl === backgroundImage ? styles.narrowSlide : ""
+            }`}
             style={{
               backgroundImage: `url(${slide.imageUrl})`,
               backgroundPosition: "center",
-              backgroundSize: "cover",
-              objectFit: "contain",
+              backgroundSize:
+                slide.imageUrl === backgroundImage ? "contain" : "cover",
+              backgroundRepeat: "no-repeat",
             }}
           >
             <h2>{slide.title}</h2>
