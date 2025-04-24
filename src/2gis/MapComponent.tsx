@@ -19,16 +19,16 @@ const MapComponent = () => {
     script.onload = () => {
       if (mapContainerRef.current && window.mapgl) {
         mapRef.current = new window.mapgl.Map(mapContainerRef.current, {
-          center: [72.82925, 40.492723], // Центр карты
+          center: [72.82925, 40.492723],
           zoom: 16,
           key: "856b7b49-9a4c-498b-ad64-b0c9962ace3c",
-          locale: "ky_KG", // Язык кыргызский
+          locale: "ky_KG",
         });
 
         markerRef.current = new window.mapgl.Marker(mapRef.current, {
-          coordinates: [72.82925, 40.492723], // Координаты для маркера
+          coordinates: [72.82925, 40.492723],
           label: {
-            text: "", // Подпись маркера
+            text: "",
           },
         });
       }
