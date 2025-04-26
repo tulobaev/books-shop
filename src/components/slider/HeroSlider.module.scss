@@ -5,6 +5,7 @@
   width: 100%;
   overflow: hidden;
   border-radius: 15px;
+  background-color: rgba(128, 128, 128, 0.249);
 }
 
 .sliderContainer {
@@ -118,6 +119,12 @@
   }
 
   .narrowSlide {
-    background-size: contain !important;
+    background-size: contain;
+  }
+}
+
+@media (max-width: 550px) {
+  .slide {
+    height: 210px;
   }
 }
