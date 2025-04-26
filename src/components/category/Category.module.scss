@@ -76,7 +76,34 @@
   }
 }
 // Адаптация
+@media (max-width: 1050px) {
+  .content_category {
+    width: 320px;
+  }
+}
+@media (max-width: 1000px) {
+  .content_category {
+    width: 300px;
+  }
+}
+@media (max-width: 900px) {
+  .content_category {
+    width: 270px;
 
+    .category {
+      gap: 3px;
+    }
+  }
+}
+@media (max-width: 850px) {
+  .content_category {
+    width: 230px;
+
+    .category {
+      gap: 0px;
+    }
+  }
+}
 @media (max-width: 790px) {
   .content_category {
     width: 100%;
