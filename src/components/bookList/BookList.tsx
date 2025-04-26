@@ -15,7 +15,7 @@ const BookList: React.FC<Props> = ({ books, selectedCategory }) => {
   return (
     <div className={scss.box}>
       <h1>{selectedCategory}</h1>
-      <div className={scss.content_cards}>
+      <div className={scss.content}>
         {books.length > 0 ? (
           books.map((book, index) => (
             <BookCard
