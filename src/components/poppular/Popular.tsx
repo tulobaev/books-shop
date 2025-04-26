@@ -16,7 +16,7 @@ const books = new Array(40).fill(0).map((_, i) => ({
 const Popular: FC = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
-  const itemPerPages = 20;
+  const itemPerPages = 16;
   const count = Math.ceil(books.length / itemPerPages);
 
   function getCurrentPageBooks() {
