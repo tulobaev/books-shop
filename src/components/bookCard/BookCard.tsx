@@ -13,7 +13,7 @@ interface Props {
 const BookCard: React.FC<Props> = ({ book, onClick }) => (
   <div className={scss.cards} onClick={onClick}>
     <img
-      src={book.book_image}
+      src="https://static-cse.canva.com/blob/585523/.png"
       alt={book.book_author}
       className={scss.card_image}
     />
