@@ -7,6 +7,7 @@ import BookCards from "../../ui/cards/BookCards";
 import { Pagination, Stack } from "@mui/material";
 import ScrollToTop from "../avtoScroll/AvtoScroll";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 const AllBooks: FC = () => {
   const books = useAppSelector((state) => state.data.data);
   const [page, setPage] = useState(1);
@@ -16,7 +17,7 @@ const AllBooks: FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("/api/books/");
+      const response = await axios.get(`${BASE_URL}api/books/`);
       dispatch(setData(response.data));
     } catch (error) {
       console.error("Ошибка при получении данных:", error);
