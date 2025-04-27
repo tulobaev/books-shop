@@ -1,6 +1,5 @@
 import { FC } from "react";
 import scss from "./SimilarBook.module.scss";
-import { useNavigate } from "react-router-dom";
 import BookCards from "../../../ui/cards/BookCards";
 
 interface Book {
