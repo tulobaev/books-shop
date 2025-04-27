@@ -1,32 +1,34 @@
-import { FC, useState } from "react";
-import scss from "./Popular.module.scss";
+import { FC, useEffect, useState } from "react";
+import scss from "./AllBooks.module.scss";
+import { useAppDispatch, useAppSelector } from "../../store/Store";
+import axios from "axios";
+import { setData } from "../../store/slice/DataSlice";
+import BookCards from "../../ui/cards/BookCards";
 import { Pagination, Stack } from "@mui/material";
 import ScrollToTop from "../avtoScroll/AvtoScroll";
-import BookCards from "../../ui/cards/BookCards";
 
-interface Book {
-  id: number;
-  book_name: string;
-  book_image: string | null;
-  description: string;
-  publication_year: number;
-}
-// временные данные популярной книги
-const books: Book[] = new Array(20).fill(0).map((_, i) => ({
-  id: i + 1,
-  book_name: `Книга ${i + 1}`,
-  book_image:
-    "https://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg",
-  description: `Поэзия о жизни и любви. a a a a a a a a a a aa  aa a aa a a a ${
-    i + 1
-  }`,
-  publication_year: 2025,
-}));
-
-const Popular: FC = () => {
+const AllBooks: FC = () => {
+  const books = useAppSelector((state) => state.data.data);
   const [page, setPage] = useState(1);
   const itemPerPages = 16;
   const count = Math.ceil(books.length / itemPerPages);
+  const dispatch = useAppDispatch();
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("/api/books/");
+      dispatch(setData(response.data));
+    } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (books.length === 0) {
+      fetchData();
+    }
+  }, [books.length, dispatch]);
+
   const currentBooks = books.slice(
     (page - 1) * itemPerPages,
     page * itemPerPages
@@ -44,12 +46,12 @@ const Popular: FC = () => {
   };
 
   return (
-    <section id={scss.Popular}>
-      <h1>Популярдуу китептер</h1>
+    <section className={scss.AllBooks}>
+      <h1>Баардык китептер</h1>
 
       <div className={scss.content}>
-        {currentBooks.map((book: Book) => (
-          <BookCards key={book.id} book={book} />
+        {currentBooks.map((item) => (
+          <BookCards key={item.id} book={item} />
         ))}
       </div>
 
@@ -71,4 +73,4 @@ const Popular: FC = () => {
   );
 };
 
-export default Popular;
+export default AllBooks;
