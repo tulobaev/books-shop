@@ -15,7 +15,7 @@ export const links = [
     title: "Байланыш",
   },
   {
-    link: "/details",
+    link: "/details/:id",
     element: <DetailsPage />,
   },
   {

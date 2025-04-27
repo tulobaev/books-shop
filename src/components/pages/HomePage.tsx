@@ -1,60 +1,14 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import scss from "./HomePage.module.scss";
 import HeroSlider from "../slider/HeroSlider";
 import Popular from "../poppular/Popular";
 import Category from "../category/Category";
 import BookList from "../bookList/BookList";
+import { useAppDispatch, useAppSelector } from "../../store/Store";
+import axios from "axios";
+import { setData } from "../../store/slice/DataSlice";
 
-// Пример данных из API
-const exampleBooks = [
-  {
-    book_image:
-      "https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg",
-    book_author: "Ахметов Сапарбай",
-    description: "Описание книги adadas a aa aa daad  aad a  a ad dsadad aa",
-    loading_time: 2023,
-    categories: {
-      id: 1,
-      category_name: "Математика, Логика",
-    },
-  },
-  {
-    book_image:
-      "https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg",
-    book_author: "Ахметов Сапарбай",
-    description:
-      "Описание книги a dad asd  dda asda  asdasd aa  a adddaadada asdasad",
-    loading_time: 2023,
-    categories: {
-      id: 2,
-      category_name: "Физика, техника",
-    },
-  },
-  {
-    book_image:
-      "https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg",
-    book_author: "Ахметов Сапарбай",
-    description: "Описание книги",
-    loading_time: 2023,
-    categories: {
-      id: 3,
-      category_name: "Кыргыз тили жана адабияты",
-    },
-  },
-  {
-    book_image:
-      "https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg",
-    book_author: "Ахметов Сапарбай",
-    description: "Описание книги",
-    loading_time: 2023,
-    categories: {
-      id: 4,
-      category: "Орус тили жана адабияты",
-    },
-  },
-];
-
-// Пример категории из API
+// Категории книг
 const categories = [
   "Математика, Логика",
   "Физика, техника",
@@ -63,12 +17,26 @@ const categories = [
   "сюда ещё добавим категори....",
 ];
 
+const api = import.meta.env.VITE_BASE_URL;
+
 const HomePage: FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const { data } = useAppSelector((s) => s.data);
+  const dispatch = useAppDispatch();
 
-  const filteredBooks = exampleBooks.filter(
-    (book) => book.categories.category_name === selectedCategory
-  );
+  const filteredBooks = selectedCategory
+    ? data?.filter(
+        (book) => book.category?.category_name === selectedCategory
+      ) || []
+    : data || [];
+
+  const fetchData = async () => {
+    const { data } = await axios.get(api);
+    dispatch(setData(data.data));
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <section className={scss.HomePage}>
@@ -91,11 +59,13 @@ const HomePage: FC = () => {
                 onSelect={setSelectedCategory}
               />
             </div>
-            {!selectedCategory && <Popular />}
-            <BookList
-              books={filteredBooks}
-              selectedCategory={selectedCategory}
-            />
+            <>
+              {!selectedCategory && <Popular />}
+              <BookList
+                books={filteredBooks}
+                selectedCategory={selectedCategory}
+              />
+            </>
           </div>
         </div>
       </div>
