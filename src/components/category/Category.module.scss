@@ -75,6 +75,28 @@
     }
   }
 }
+
+// Скелетон стили
+.skeleton_category_item {
+  height: 40px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+  margin-top: 5px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #d1d1d1;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
 // Адаптация
 @media (max-width: 1050px) {
   .content_category {
