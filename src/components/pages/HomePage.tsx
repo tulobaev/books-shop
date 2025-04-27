@@ -33,8 +33,6 @@ const popular: Book[] = new Array(20).fill(0).map((_, i) => ({
   publication_year: 2025,
 }));
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-
 const HomePage: FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [category, setCategory] = useState<ICategoryType[]>([]);
@@ -44,7 +42,7 @@ const HomePage: FC = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const categoryApi = await axios.get(`${BASE_URL}api/category/`);
+        const categoryApi = await axios.get("/api/category/");
         setCategory(categoryApi.data);
       } catch (error) {
         console.error("Ошибка при получении категорий:", error);
