@@ -1,6 +1,5 @@
 import scss from "./BookList.module.scss";
-import { useNavigate } from "react-router-dom";
-import BookCard from "../bookCard/BookCard";
+import BookCards from "../../ui/cards/BookCards";
 
 interface Props {
   books: any[];
@@ -8,8 +7,6 @@ interface Props {
 }
 
 const BookList: React.FC<Props> = ({ books, selectedCategory }) => {
-  const navigate = useNavigate();
-
   if (!selectedCategory) return null;
 
   return (
@@ -17,13 +14,7 @@ const BookList: React.FC<Props> = ({ books, selectedCategory }) => {
       <h1>{selectedCategory}</h1>
       <div className={scss.content}>
         {books.length > 0 ? (
-          books.map((book, index) => (
-            <BookCard
-              key={index}
-              book={book}
-              onClick={() => navigate(`/details/${book.id}`)}
-            />
-          ))
+          books.map((book) => <BookCards key={book.id} book={book} />)
         ) : (
           <p>Книги не найдены для категории: {selectedCategory}</p>
         )}

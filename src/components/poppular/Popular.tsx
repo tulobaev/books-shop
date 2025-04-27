@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import scss from "./Popular.module.scss";
 import { Pagination, Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/Store";
 import ScrollToTop from "../avtoScroll/AvtoScroll";
 import { setData } from "../../store/slice/DataSlice";
 import axios from "axios";
+import BookCards from "../../ui/cards/BookCards";
 
 interface Book {
   id: number;
@@ -18,25 +18,23 @@ interface Book {
 const Popular: FC = () => {
   const books = useAppSelector((state) => state.data.data);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
   const itemPerPages = 16;
   const count = Math.ceil(books.length / itemPerPages);
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("api/books/");
+      dispatch(setData(response.data));
+    } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/books/");
-        dispatch(setData(response.data));
-      } catch (error) {
-        console.error("Ошибка при получении данных:", error);
-      }
-    };
     fetchData();
   }, [dispatch]);
-
-  console.log(books);
 
   function getCurrentPageBooks() {
     let start = (page - 1) * itemPerPages;
@@ -65,21 +63,7 @@ const Popular: FC = () => {
 
       <div className={scss.content}>
         {getCurrentPageBooks().map((book: Book) => (
-          <div
-            onClick={() => navigate(`/details/${book.id}`)}
-            className={scss.cards}
-            key={book.id}
-          >
-            <img
-              src={book.book_image || "/path/to/default-image.jpg"}
-              alt={book.book_name}
-            />
-            <div className={scss.text}>
-              <h2>{book.book_name}</h2>
-              <p>{book.description}</p>
-              <span>{book.publication_year}</span>
-            </div>
-          </div>
+          <BookCards key={book.id} book={book} />
         ))}
       </div>
 

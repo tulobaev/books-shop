@@ -7,7 +7,6 @@ const NotFoundPage: FC = () => {
     <section className={scss.NotFound}>
       <div className="container">
         <div className={scss.content}>
-          {/* Иконка книги */}
           <div className={scss.icon}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
