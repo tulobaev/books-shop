@@ -1,0 +1,52 @@
+.AllBooks {
+  border-radius: 16px;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-size: clamp(1.188rem, 1.063rem + 0.63vw, 1.625rem);
+    color: #fff;
+    background-color: #3870ffe7;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.386);
+    border-radius: 10px;
+    position: sticky;
+    top: 110px;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    @media (max-width: 600px) {
+      top: 100px;
+      padding: 0.8rem;
+    }
+    @media (max-width: 481px) {
+      top: 80px;
+    }
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  @media (max-width: 1350px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 890px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 720px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 470px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-block: 20px;
+}
