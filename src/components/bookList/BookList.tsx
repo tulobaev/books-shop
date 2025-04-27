@@ -21,7 +21,7 @@ const BookList: React.FC<Props> = ({ books, selectedCategory }) => {
             <BookCard
               key={index}
               book={book}
-              onClick={() => navigate("/details")}
+              onClick={() => navigate(`/details/${book.id}`)}
             />
           ))
         ) : (
