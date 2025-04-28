@@ -23,10 +23,7 @@ const BookCards: FC<IProps> = ({ book }) => {
       className={scss.cards}
       key={book.id}
     >
-      <img
-        src={book.book_image || "/path/to/default-image.jpg"}
-        alt={book.book_name}
-      />
+      <img src={book.book_image || "/path/to/default-image.jpg"} alt="image" />
       <div className={scss.text}>
         <h2>{book.book_name}</h2>
         <p>{book.description}</p>
