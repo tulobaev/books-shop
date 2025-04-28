@@ -23,6 +23,8 @@ const AllBooks: FC = () => {
     }
   };
 
+  console.log(books);
+
   useEffect(() => {
     if (books.length === 0) {
       fetchData();
