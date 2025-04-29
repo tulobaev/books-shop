@@ -1,7 +1,6 @@
 import scss from "./Category.module.scss";
 
 interface CategoryType {
-  id: number;
   category_name: string;
 }
 
