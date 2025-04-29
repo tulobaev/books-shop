@@ -9,24 +9,14 @@ import {
   useGetCategoriesQuery,
   useGetProductQuery,
 } from "../../store/api/book";
-
-interface Book {
-  id: number;
-  book_name: string;
-  book_image: string | null;
-  description: string;
-  publication_year: number;
-  category?: {
-    category_name: string;
-  };
-}
+import { IBook } from "../../types";
 
 interface Category {
   id: number;
   category_name: string;
 }
 
-const popular: Book[] = new Array(20).fill(0).map((_, i) => ({
+const popular: IBook[] = new Array(20).fill(0).map((_, i) => ({
   id: i + 1,
   book_name: `Книга ${i + 1}`,
   book_image:
@@ -36,11 +26,10 @@ const popular: Book[] = new Array(20).fill(0).map((_, i) => ({
 }));
 
 const HomePage: FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-
   const { data: allBooks = [], isLoading: booksLoading } = useGetProductQuery();
   const { data: categories = [], isLoading: categoriesLoading } =
     useGetCategoriesQuery();
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const filteredBooks =
     selectedCategory === "all"
@@ -48,7 +37,7 @@ const HomePage: FC = () => {
       : selectedCategory === "popular"
       ? popular
       : allBooks.filter(
-          (book: Book) => book.category?.category_name === selectedCategory
+          (book: IBook) => book.category?.category_name === selectedCategory
         );
 
   return (
@@ -79,7 +68,7 @@ const HomePage: FC = () => {
             ) : selectedCategory === "all" ? (
               <AllBooks book={allBooks} />
             ) : selectedCategory === "popular" ? (
-              <Popular books={popular} />
+              <Popular />
             ) : (
               <BookList
                 books={filteredBooks}

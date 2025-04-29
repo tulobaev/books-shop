@@ -1,17 +1,9 @@
 import scss from "./BookList.module.scss";
 import BookCards from "../../ui/cards/BookCards";
-
-interface Book {
-  id: number;
-  book_name: string;
-  book_image: string | null;
-  description: string;
-  publication_year: number;
-  category: string;
-}
+import { IBook } from "../../types";
 
 interface Props {
-  books: Book[];
+  books: IBook[];
   selectedCategory: string;
 }
 

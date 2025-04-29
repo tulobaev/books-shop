@@ -1,17 +1,7 @@
 import { FC, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import scss from "./BookCards.module.scss";
-
-interface Book {
-  id: number;
-  book_name: string;
-  book_image: string | null;
-  description: string;
-  publication_year: number;
-  category?: {
-    category_name: string;
-  }; // Added optional category
-}
+import { Book } from "../../types";
 
 interface BookCardsProps {
   book: Book;
@@ -30,6 +20,7 @@ const BookCards: FC<BookCardsProps> = ({ book, onClick }) => {
   }, [book.id, navigate, onClick]);
 
   const imageUrl = book.book_image || "/images/default-book.jpg";
+
   return (
     <article
       onClick={handleClick}
