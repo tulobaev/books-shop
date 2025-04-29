@@ -7,35 +7,24 @@ import AllBooks from "../allBooks/AllBooks";
 import Popular from "../poppular/Popular";
 import {
   useGetCategoriesQuery,
+  useGetPopularBooksQuery,
   useGetProductQuery,
 } from "../../store/api/book";
 import { IBook } from "../../types";
-
-interface Category {
-  id: number;
-  category_name: string;
-}
-
-const popular: IBook[] = new Array(20).fill(0).map((_, i) => ({
-  id: i + 1,
-  book_name: `Книга ${i + 1}`,
-  book_image:
-    "https://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg",
-  description: `Поэзия о жизни и любви ${i + 1}`,
-  publication_year: 2025,
-}));
 
 const HomePage: FC = () => {
   const { data: allBooks = [], isLoading: booksLoading } = useGetProductQuery();
   const { data: categories = [], isLoading: categoriesLoading } =
     useGetCategoriesQuery();
+  const { data: popularBooks = [], isLoading: popularLoading } =
+    useGetPopularBooksQuery();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const filteredBooks =
     selectedCategory === "all"
       ? allBooks
       : selectedCategory === "popular"
-      ? popular
+      ? popularBooks
       : allBooks.filter(
           (book: IBook) => book.category?.category_name === selectedCategory
         );
@@ -63,12 +52,12 @@ const HomePage: FC = () => {
               />
             </div>
 
-            {booksLoading || categoriesLoading ? (
+            {booksLoading || categoriesLoading || popularLoading ? (
               <p>Жүктөлүүдө...</p>
             ) : selectedCategory === "all" ? (
               <AllBooks book={allBooks} />
             ) : selectedCategory === "popular" ? (
-              <Popular />
+              <Popular books={popularBooks} />
             ) : (
               <BookList
                 books={filteredBooks}
