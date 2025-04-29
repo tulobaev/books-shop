@@ -55,7 +55,7 @@ const HomePage: FC = () => {
             {booksLoading || categoriesLoading || popularLoading ? (
               <p>Жүктөлүүдө...</p>
             ) : selectedCategory === "all" ? (
-              <AllBooks book={allBooks} />
+              <AllBooks books={allBooks} />
             ) : selectedCategory === "popular" ? (
               <Popular books={popularBooks} />
             ) : (
