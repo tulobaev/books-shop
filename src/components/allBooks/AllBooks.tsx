@@ -12,6 +12,13 @@ interface AllBooksProps {
 const AllBooks: FC<AllBooksProps> = ({ book = [] }) => {
   const [page, setPage] = useState(1);
   const itemsPerPage = 16;
+  console.log(books);
+
+  useEffect(() => {
+    if (books.length === 0) {
+      fetchData();
+    }
+  }, [books.length, dispatch]);
 
   const pageCount = Math.ceil(book.length / itemsPerPage);
   const currentBooks = book.slice(
