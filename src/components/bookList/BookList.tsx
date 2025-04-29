@@ -7,6 +7,7 @@ interface Book {
   book_image: string | null;
   description: string;
   publication_year: number;
+  category: string;
 }
 
 interface Props {

@@ -1,25 +1,29 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import scss from "./HomePage.module.scss";
 import HeroSlider from "../slider/HeroSlider";
 import Category from "../category/Category";
 import BookList from "../bookList/BookList";
-import { useAppSelector } from "../../store/Store";
-import axios from "axios";
 import AllBooks from "../allBooks/AllBooks";
 import Popular from "../poppular/Popular";
+import {
+  useGetCategoriesQuery,
+  useGetProductQuery,
+} from "../../store/api/book";
 
-interface ICategoryType {
-  id: number;
-  category_name: string;
-}
-
-// Временные популярные книги
 interface Book {
   id: number;
   book_name: string;
   book_image: string | null;
   description: string;
   publication_year: number;
+  category?: {
+    category_name: string;
+  };
+}
+
+interface Category {
+  id: number;
+  category_name: string;
 }
 
 const popular: Book[] = new Array(20).fill(0).map((_, i) => ({
@@ -27,39 +31,25 @@ const popular: Book[] = new Array(20).fill(0).map((_, i) => ({
   book_name: `Книга ${i + 1}`,
   book_image:
     "https://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg",
-  description: `Поэзия о жизни и любви. a a a a a a a a a a aa  aa a aa a a a ${
-    i + 1
-  }`,
+  description: `Поэзия о жизни и любви ${i + 1}`,
   publication_year: 2025,
 }));
 
 const HomePage: FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [category, setCategory] = useState<ICategoryType[]>([]);
-  const { data: allBooks } = useAppSelector((s) => s.data);
-  const [popularBooks, setPopularBooks] = useState<Book[]>([]);
 
-  useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        const categoryApi = await axios.get("/api/category/");
-        setCategory(categoryApi.data);
-      } catch (error) {
-        console.error("Ошибка при получении категорий:", error);
-      }
-    };
-    fetchCategory();
-    setPopularBooks(popular);
-  }, []);
+  const { data: allBooks = [], isLoading: booksLoading } = useGetProductQuery();
+  const { data: categories = [], isLoading: categoriesLoading } =
+    useGetCategoriesQuery();
 
   const filteredBooks =
     selectedCategory === "all"
-      ? allBooks || []
+      ? allBooks
       : selectedCategory === "popular"
-      ? popularBooks || []
-      : allBooks?.filter(
-          (book) => book.category?.category_name === selectedCategory
-        ) || [];
+      ? popular
+      : allBooks.filter(
+          (book: Book) => book.category?.category_name === selectedCategory
+        );
 
   return (
     <section className={scss.HomePage}>
@@ -67,7 +57,7 @@ const HomePage: FC = () => {
         <div className={scss.box}>
           <div className={scss.category_block}>
             <Category
-              categories={category}
+              categories={categories}
               selectedCategory={selectedCategory}
               onSelect={setSelectedCategory}
             />
@@ -75,26 +65,27 @@ const HomePage: FC = () => {
 
           <div className={scss.content}>
             <HeroSlider />
+
             <div className={scss.category_block_mobile}>
               <Category
-                categories={category}
+                categories={categories}
                 selectedCategory={selectedCategory}
                 onSelect={setSelectedCategory}
               />
             </div>
 
-            <>
-              {selectedCategory === "all" ? (
-                <AllBooks />
-              ) : selectedCategory === "popular" ? (
-                <Popular />
-              ) : (
-                <BookList
-                  books={filteredBooks}
-                  selectedCategory={selectedCategory}
-                />
-              )}
-            </>
+            {booksLoading || categoriesLoading ? (
+              <p>Жүктөлүүдө...</p>
+            ) : selectedCategory === "all" ? (
+              <AllBooks book={allBooks} />
+            ) : selectedCategory === "popular" ? (
+              <Popular books={popular} />
+            ) : (
+              <BookList
+                books={filteredBooks}
+                selectedCategory={selectedCategory}
+              />
+            )}
           </div>
         </div>
       </div>
