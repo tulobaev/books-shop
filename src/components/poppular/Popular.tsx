@@ -5,20 +5,11 @@ import ScrollToTop from "../avtoScroll/AvtoScroll";
 import BookCards from "../../ui/cards/BookCards";
 import { IBook } from "../../types";
 
-// временные данные популярной книги
-const books: IBook[] = new Array(20).fill(0).map((_, i) => ({
-  id: i + 1,
-  book_name: `Книга ${i + 1}`,
-  book_image:
-    "https://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg",
-  description: `Поэзия о жизни и любви. a a a a a a a a a a aa  aa a aa a a a ${
-    i + 1
-  }`,
-  publication_year: 2025,
-  category: { category_name: `Категория ${(i % 3) + 1}` },
-}));
+interface PopularProps {
+  books: IBook[];
+}
 
-const Popular: FC = () => {
+const Popular: FC<PopularProps> = ({ books }) => {
   const [page, setPage] = useState(1);
   const itemPerPages = 16;
   const count = Math.ceil(books.length / itemPerPages);
@@ -32,10 +23,7 @@ const Popular: FC = () => {
     value: number
   ) => {
     setPage(value);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -43,7 +31,7 @@ const Popular: FC = () => {
       <h1>Популярдуу китептер</h1>
 
       <div className={scss.content}>
-        {currentBooks.map((book: IBook) => (
+        {currentBooks.map((book) => (
           <BookCards key={book.id} book={book} />
         ))}
       </div>
