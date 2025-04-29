@@ -9,44 +9,53 @@ import {
   FaDownload,
   FaBookOpen,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetBookByIdQuery } from "../../store/api/book";
 import SimilarBooks from "./similar/SimilarBooks";
 
 const DetailsPage: FC = () => {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const { data: book, isLoading } = useGetBookByIdQuery(Number(id));
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!book) {
+    return <p>Book not found</p>;
+  }
+
   return (
     <section className={scss.DetailsPage}>
       <div className="container">
         <div className={scss.block}>
           <div className={scss.card}>
             <div className={scss.info}>
-              <h1>Математикалык кереметтер</h1>
-
+              <h1>{book.book_name}</h1>
               <p className={scss.aftor}>
-                <FaUser /> <strong>Автор:</strong> А.А. Беляев, И.Н. Цыбуля,
-                Н.Н. asda asdasd asdad adasda asda s Осипова
+                <FaUser /> <strong>Автор:</strong> {book.book_author}
               </p>
               <p>
-                <FaCalendarAlt /> <strong>Басылган жылы:</strong> 2025 жыл
+                <FaCalendarAlt /> <strong>Басылган жылы:</strong>{" "}
+                {book.publication_year}
               </p>
               <p>
-                <FaRegClock /> <strong>Жүктөлгөн убакыт:</strong> 20 Апреля 2025
+                <FaRegClock /> <strong>Жүктөлгөн убакыт:</strong>{" "}
+                {book.loading_time}
               </p>
               <div className={scss.top}>
                 <p className={scss.rating}>
-                  <FaEye /> <strong>Көрүүлөр:</strong> <span>1,234</span>
+                  <FaEye /> <strong>Көрүүлөр:</strong>{" "}
+                  <span>{book.viewing_count}</span>
                 </p>
                 <p className={scss.rating}>
-                  <FaHeart /> <strong>Жакmы:</strong> <span>527</span>
+                  <FaHeart /> <strong>Жакты:</strong>{" "}
+                  <span>{book.like_count}</span>
                 </p>
               </div>
 
-              <p className={scss.description}>
-                Бул китеп сызгыч жана циркуль аркылуу бурчту үчкө бөлүү жана
-                кубду эки эселөө маселелерин чечүүнү камтыйт. Теория менен
-                практиканын айкалышы аркылуу математика дүйнөсүнө кызыктуу
-                саякат тартуулайт.
-              </p>
+              <p className={scss.description}>{book.description}</p>
 
               <div className={scss.buttons}>
                 <button className={scss.read}>
@@ -65,12 +74,12 @@ const DetailsPage: FC = () => {
             </div>
             <div className={scss.image}>
               <img
-                src="https://skazkiwsem.fun/wp-content/uploads/2017/11/1-1.jpg"
-                alt="Обложка книги"
+                src={book.book_image || "/images/default-book.jpg"}
+                alt={`Cover of ${book.book_name}`}
               />
             </div>
           </div>
-          <SimilarBooks />
+          <SimilarBooks category={book.category} />
         </div>
       </div>
     </section>

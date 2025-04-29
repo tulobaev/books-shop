@@ -1,19 +1,5 @@
 import { api as index } from "../index";
-
-export interface Book {
-  id: number;
-  book_name: string;
-  book_image: string | null;
-  description: string;
-  publication_year: number;
-  category?: {
-    category_name: string;
-  };
-}
-
-interface Category {
-  category_name: string;
-}
+import { Book, Category, BookDetails } from "../../../types";
 
 const api = index.injectEndpoints({
   endpoints: (build) => ({
@@ -29,7 +15,24 @@ const api = index.injectEndpoints({
         method: "GET",
       }),
     }),
+    getPopularBooks: build.query<Book[], void>({
+      query: () => ({
+        url: "/top-books/",
+        method: "GET",
+      }),
+    }),
+    getBookById: build.query<BookDetails, number>({
+      query: (id) => ({
+        url: `/books/${id}/`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetProductQuery, useGetCategoriesQuery } = api;
+export const {
+  useGetProductQuery,
+  useGetCategoriesQuery,
+  useGetPopularBooksQuery,
+  useGetBookByIdQuery,
+} = api;

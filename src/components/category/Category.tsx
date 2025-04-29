@@ -1,11 +1,8 @@
 import scss from "./Category.module.scss";
-
-interface CategoryType {
-  category_name: string;
-}
+import { ICategory } from "../../types";
 
 interface Props {
-  categories: CategoryType[];
+  categories: ICategory[];
   selectedCategory: string;
   onSelect: (category: string) => void;
 }

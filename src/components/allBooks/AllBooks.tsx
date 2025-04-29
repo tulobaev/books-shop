@@ -3,23 +3,15 @@ import scss from "./AllBooks.module.scss";
 import BookCards from "../../ui/cards/BookCards";
 import { Pagination, Stack } from "@mui/material";
 import ScrollToTop from "../avtoScroll/AvtoScroll";
-import { Book } from "../../store/api/book";
+import { IBook } from "../../types";
 
 interface AllBooksProps {
-  book: Book[];
+  book: IBook[];
 }
 
 const AllBooks: FC<AllBooksProps> = ({ book = [] }) => {
   const [page, setPage] = useState(1);
   const itemsPerPage = 16;
-  console.log(books);
-
-  useEffect(() => {
-    if (books.length === 0) {
-      fetchData();
-    }
-  }, [books.length, dispatch]);
-
   const pageCount = Math.ceil(book.length / itemsPerPage);
   const currentBooks = book.slice(
     (page - 1) * itemsPerPage,

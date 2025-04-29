@@ -3,16 +3,10 @@ import scss from "./Popular.module.scss";
 import { Pagination, Stack } from "@mui/material";
 import ScrollToTop from "../avtoScroll/AvtoScroll";
 import BookCards from "../../ui/cards/BookCards";
+import { IBook } from "../../types";
 
-interface Book {
-  id: number;
-  book_name: string;
-  book_image: string | null;
-  description: string;
-  publication_year: number;
-}
 // временные данные популярной книги
-const books: Book[] = new Array(20).fill(0).map((_, i) => ({
+const books: IBook[] = new Array(20).fill(0).map((_, i) => ({
   id: i + 1,
   book_name: `Книга ${i + 1}`,
   book_image:
@@ -21,6 +15,7 @@ const books: Book[] = new Array(20).fill(0).map((_, i) => ({
     i + 1
   }`,
   publication_year: 2025,
+  category: { category_name: `Категория ${(i % 3) + 1}` },
 }));
 
 const Popular: FC = () => {
@@ -48,7 +43,7 @@ const Popular: FC = () => {
       <h1>Популярдуу китептер</h1>
 
       <div className={scss.content}>
-        {currentBooks.map((book: Book) => (
+        {currentBooks.map((book: IBook) => (
           <BookCards key={book.id} book={book} />
         ))}
       </div>

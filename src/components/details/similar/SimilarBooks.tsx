@@ -1,32 +1,35 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import scss from "./SimilarBook.module.scss";
 import BookCards from "../../../ui/cards/BookCards";
+import { IBook } from "../../../types";
+import { useGetProductQuery } from "../../../store/api/book";
 
-interface Book {
-  id: number;
-  book_name: string;
-  book_image: string | null;
-  description: string;
-  publication_year: number;
+interface SimilarBooksProps {
+  category: { category_name: string };
 }
 
-const SimilarBooks: FC = () => {
-  const books: Book[] = new Array(20).fill(0).map((_, i) => ({
-    id: i + 1,
-    book_name: `Книга ${i + 1}`,
-    book_image:
-      "https://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg",
-    description: `Поэзия о жизни и любви. a a a a a a a a a a aa  aa a aa a a a ${
-      i + 1
-    }`,
-    publication_year: 2025,
-  }));
+const SimilarBooks: FC<SimilarBooksProps> = ({ category }) => {
+  const [filteredBooks, setFilteredBooks] = useState<IBook[]>([]);
+  const { data: allBooks, isLoading } = useGetProductQuery();
+
+  useEffect(() => {
+    if (allBooks) {
+      const filtered = allBooks.filter(
+        (book) => book.category?.category_name === category.category_name
+      );
+      setFilteredBooks(filtered);
+    }
+  }, [allBooks, category]);
+
+  if (isLoading) {
+    return <p>Loading similar books...</p>;
+  }
 
   return (
     <section id={scss.similar}>
       <h1>Окшош китептер</h1>
       <div className={scss.content}>
-        {books.map((book) => (
+        {filteredBooks.map((book) => (
           <BookCards key={book.id} book={book} />
         ))}
       </div>
