@@ -1,10 +1,10 @@
 import { FC, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import scss from "./BookCards.module.scss";
-import { Book } from "../../types";
+import { IBook } from "../../types";
 
 interface BookCardsProps {
-  book: Book;
+  book: IBook;
   onClick?: (bookId: number) => void;
 }
 
