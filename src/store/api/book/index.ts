@@ -1,27 +1,27 @@
+import { IBook, IBookDetails, ICategory } from "../../../types";
 import { api as index } from "../index";
-import { Book, Category, BookDetails } from "../../../types";
 
 const api = index.injectEndpoints({
   endpoints: (build) => ({
-    getProduct: build.query<Book[], void>({
+    getProduct: build.query<IBook[], void>({
       query: () => ({
         url: "/books/",
         method: "GET",
       }),
     }),
-    getCategories: build.query<Category[], void>({
+    getCategories: build.query<ICategory[], void>({
       query: () => ({
         url: "/category/",
         method: "GET",
       }),
     }),
-    getPopularBooks: build.query<Book[], void>({
+    getPopularBooks: build.query<IBook[], void>({
       query: () => ({
         url: "/top-books/",
         method: "GET",
       }),
     }),
-    getBookById: build.query<BookDetails, number>({
+    getBookById: build.query<IBookDetails, number>({
       query: (id) => ({
         url: `/books/${id}/`,
         method: "GET",
