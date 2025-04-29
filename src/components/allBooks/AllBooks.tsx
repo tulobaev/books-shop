@@ -6,14 +6,14 @@ import ScrollToTop from "../avtoScroll/AvtoScroll";
 import { IBook } from "../../types";
 
 interface AllBooksProps {
-  book: IBook[];
+  books: IBook[];
 }
 
-const AllBooks: FC<AllBooksProps> = ({ book = [] }) => {
+const AllBooks: FC<AllBooksProps> = ({ books = [] }) => {
   const [page, setPage] = useState(1);
   const itemsPerPage = 16;
-  const pageCount = Math.ceil(book.length / itemsPerPage);
-  const currentBooks = book.slice(
+  const pageCount = Math.ceil(books.length / itemsPerPage);
+  const currentBooks = books.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
