@@ -1,34 +1,25 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import scss from "./SearchResult.module.scss";
 import { useGetProductQuery } from "../../store/api/book";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/Store";
-import { useNavigate } from "react-router-dom";
-import { setSearchQuery } from "./SearchSlice";
+import { useNavigate, useParams } from "react-router-dom";
 import { Pagination, Stack } from "@mui/material";
 import ScrollToTop from "../../components/avtoScroll/AvtoScroll";
 
 const SearchResult: FC = () => {
   const { data: books = [], isLoading } = useGetProductQuery();
-  const query = useSelector((state: RootState) =>
-    state.search.query.toLowerCase()
-  );
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const { query = "" } = useParams();
 
-  const filteredBooks = books.filter((item) =>
-    item.book_name.toLowerCase().trim().includes(query.trim().toLowerCase())
-  );
-
-  useEffect(() => {
-    return () => {
-      dispatch(setSearchQuery(""));
-    };
-  }, [dispatch]);
+  const filteredBooks = useMemo(() => {
+    return books.filter((item) =>
+      item.book_name.toLowerCase().includes(query.trim().toLowerCase())
+    );
+  }, [books, query]);
 
   const [page, setPage] = useState(1);
   const itemPerPages = 16;
   const count = Math.ceil(filteredBooks.length / itemPerPages);
+
   const currentBooks = filteredBooks.slice(
     (page - 1) * itemPerPages,
     page * itemPerPages
@@ -73,7 +64,6 @@ const SearchResult: FC = () => {
 
                   <div className={scss.text}>
                     <h2>{item.book_name}</h2>
-
                     <p className={scss.description}>{item.description}</p>
                     <span className={scss.year}>{item.publication_year}</span>
                   </div>
@@ -84,7 +74,8 @@ const SearchResult: FC = () => {
             )}
           </div>
         </div>
-        {books.length > itemPerPages && (
+
+        {filteredBooks.length > itemPerPages && (
           <div className={scss.pagination}>
             <Stack spacing={2}>
               <Pagination

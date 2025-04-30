@@ -20,7 +20,7 @@ export const links = [
     element: <DetailsPage />,
   },
   {
-    link: "/search/",
+    link: "/search/:query",
     element: <SearchResult />,
   },
   {

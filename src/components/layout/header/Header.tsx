@@ -7,18 +7,22 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { links } from "../../../constants/Link";
 import logo from "../../../assets/logo.png";
 import anniversary from "../../../assets/image.webp";
-import { useDispatch, useSelector } from "react-redux";
-import { setSearchQuery } from "../../../features/search/SearchSlice";
-import { RootState } from "../../../store/Store";
 
 const Header: FC = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dispatch = useDispatch();
-  const query = useSelector((state: RootState) => state.search.query);
+  const [query, setQuery] = useState("");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search/${encodeURIComponent(query.trim())}`);
+      setQuery("");
+    }
   };
 
   return (
@@ -57,13 +61,7 @@ const Header: FC = () => {
           </nav>
 
           <div className={scss.menu}>
-            <form
-              className={scss.search_form}
-              onSubmit={(e) => {
-                e.preventDefault();
-                navigate(`/search/`);
-              }}
-            >
+            <form className={scss.search_form} onSubmit={handleSearchSubmit}>
               <button
                 className={scss.search_button}
                 type="submit"
@@ -77,13 +75,13 @@ const Header: FC = () => {
                 type="text"
                 required
                 value={query}
-                onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+                onChange={(e) => setQuery(e.target.value)}
               />
               <button
                 className={scss.reset_button}
-                type="reset"
+                type="button"
                 aria-label="Clear"
-                onClick={() => dispatch(setSearchQuery(""))}
+                onClick={() => setQuery("")}
               >
                 <IoMdClose className={scss.svg} />
               </button>
