@@ -43,7 +43,6 @@ const HomePage: FC = () => {
 
           <div className={scss.content}>
             <HeroSlider />
-
             <div className={scss.category_block_mobile}>
               <Category
                 categories={categories}
