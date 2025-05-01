@@ -32,9 +32,11 @@ const AllBooks: FC<AllBooksProps> = ({ books = [] }) => {
 
       <>
         <div className={scss.content}>
-          {currentBooks.map((item) => (
-            <BookCards key={item.id} book={item} />
-          ))}
+          {currentBooks.length === 0 ? (
+            <h3>aaa</h3>
+          ) : (
+            currentBooks.map((item) => <BookCards key={item.id} book={item} />)
+          )}
         </div>
 
         {pageCount > 1 && (

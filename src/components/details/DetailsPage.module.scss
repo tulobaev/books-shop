@@ -260,3 +260,14 @@
     }
   }
 }
+
+.like {
+  background-color: #ff4d4f;
+  color: white;
+  cursor: pointer;
+}
+
+.liked {
+  background-color: gray;
+  cursor: not-allowed;
+}

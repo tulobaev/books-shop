@@ -19,7 +19,13 @@ const BookCards: FC<BookCardsProps> = ({ book, onClick }) => {
     }
   }, [book.id, navigate, onClick]);
 
-  const imageUrl = book.book_image || "/images/default-book.jpg";
+  const fixImageUrl = (url: string | null | undefined) => {
+    if (!url) return null;
+    if (url.startsWith("http://80.242.57.16:8080")) return url;
+    if (url.startsWith("http://80.242.57.16"))
+      return url.replace("http://80.242.57.16", "http://80.242.57.16:8080");
+    return url;
+  };
 
   return (
     <article
@@ -31,7 +37,7 @@ const BookCards: FC<BookCardsProps> = ({ book, onClick }) => {
     >
       <div className={scss.imageContainer}>
         <img
-          src={imageUrl}
+          src={fixImageUrl(book.book_image) || ""}
           alt={`Cover of ${book.book_name}`}
           className={scss.bookImage}
         />
@@ -39,9 +45,8 @@ const BookCards: FC<BookCardsProps> = ({ book, onClick }) => {
       <div className={scss.text}>
         <h2 className={scss.title}>{book.book_name}</h2>
         {book.category && (
-          <span className={scss.category}>{book.category.category_name}</span>
+          <p className={scss.category}>{book.category.category_name}</p>
         )}
-        <p className={scss.description}>{book.description}</p>
         <span className={scss.year}>{book.publication_year}</span>
       </div>
     </article>

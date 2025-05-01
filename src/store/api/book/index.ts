@@ -27,6 +27,13 @@ const api = index.injectEndpoints({
         method: "GET",
       }),
     }),
+    likeBook: build.mutation<void, number>({
+      query: (id) => ({
+        url: `/like/`,
+        method: "POST",
+        body: { book: id, unique_field: id }, // Ошибка может быть здесь
+      }),
+    }),
   }),
 });
 
@@ -35,4 +42,5 @@ export const {
   useGetCategoriesQuery,
   useGetPopularBooksQuery,
   useGetBookByIdQuery,
+  useLikeBookMutation,
 } = api;

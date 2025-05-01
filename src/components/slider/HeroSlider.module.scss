@@ -34,7 +34,7 @@
 }
 
 .slide h2 {
-  font-size: 29px;
+  font-size: clamp(1rem, 0.768rem + 1.16vw, 1.813rem);
   font-weight: 600;
   color: #fff;
   text-align: center;
@@ -112,10 +112,11 @@
   .slide {
     height: clamp(15rem, 5rem + 20vw, 18rem);
     background-size: contain;
-
-    h2 {
-      display: none;
-    }
+  }
+  .slide h2 {
+    backdrop-filter: blur(1px);
+    letter-spacing: 2px;
+    bottom: 37px;
   }
 
   .narrowSlide {

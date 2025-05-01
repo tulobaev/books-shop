@@ -10,13 +10,26 @@ import {
   FaBookOpen,
 } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetBookByIdQuery } from "../../store/api/book";
+import { useGetBookByIdQuery, useLikeBookMutation } from "../../store/api/book";
 import SimilarBooks from "./similar/SimilarBooks";
 
 const DetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading } = useGetBookByIdQuery(Number(id));
+  const [likeBook] = useLikeBookMutation();
+  console.log(book);
+
+  const handleLike = async () => {
+    if (id) {
+      try {
+        console.log("Sending like request for book ID:", id); // Для отладки
+        await likeBook(Number(id));
+      } catch (error: any) {
+        console.error("Failed to like the book:", error);
+      }
+    }
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -25,6 +38,14 @@ const DetailsPage: FC = () => {
   if (!book) {
     return <p>Book not found</p>;
   }
+
+  const fixImageUrl = (url: string | null | undefined) => {
+    if (!url) return null;
+    if (url.startsWith("http://80.242.57.16:8080")) return url;
+    if (url.startsWith("http://80.242.57.16"))
+      return url.replace("http://80.242.57.16", "http://80.242.57.16:8080");
+    return url;
+  };
 
   return (
     <section className={scss.DetailsPage}>
@@ -64,8 +85,11 @@ const DetailsPage: FC = () => {
                 <button className={scss.download}>
                   <FaDownload /> Жүктөө
                 </button>
-                <button className={scss.like}>
-                  <FaHeart style={{ color: "white" }} /> Жакты
+                <button className={scss.like} onClick={handleLike}>
+                  <FaHeart
+                    style={{ color: book.like_count ? "red" : "white" }}
+                  />{" "}
+                  Жакты
                 </button>
                 <button onClick={() => navigate("/")} className={scss.back}>
                   ←Артка
@@ -74,8 +98,11 @@ const DetailsPage: FC = () => {
             </div>
             <div className={scss.image}>
               <img
-                src={book.book_image || "/images/default-book.jpg"}
-                alt={`Cover of ${book.book_name}`}
+                src={
+                  fixImageUrl(book.book_image) ||
+                  "https://static.vecteezy.com/system/resources/previews/009/007/126/non_2x/document-file-not-found-search-no-result-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg"
+                }
+                alt={book.book_name}
               />
             </div>
           </div>

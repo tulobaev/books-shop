@@ -12,6 +12,9 @@
       gap: 30px;
       width: 100%;
       max-width: 1050px;
+      @media (max-width: 900px) {
+        gap: 20px;
+      }
     }
 
     .category_block_mobile {
@@ -19,7 +22,7 @@
     }
   }
 }
-@media (max-width: 790px) {
+@media (max-width: 900px) {
   .HomePage {
     padding-block: 20px;
   }
