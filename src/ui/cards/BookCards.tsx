@@ -45,9 +45,11 @@ const BookCards: FC<BookCardsProps> = ({ book, onClick }) => {
     >
       <div className={scss.imageContainer}>
         <img
-          src={imageUrl}
-          alt={`"${book.book_name}" китебинин мукабасы`}
-          className={scss.bookImage}
+          src={
+            fixImageUrl(book.book_image) ||
+            "https://static.vecteezy.com/system/resources/previews/009/007/126/non_2x/document-file-not-found-search-no-result-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg"
+          }
+          alt={book.book_name}
         />
       </div>
       <div className={scss.text}>

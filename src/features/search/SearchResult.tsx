@@ -35,6 +35,14 @@ const SearchResult: FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const fixImageUrl = (url: string | null | undefined) => {
+    if (!url) return null;
+    if (url.startsWith("http://80.242.57.16:8080")) return url;
+    if (url.startsWith("http://80.242.57.16"))
+      return url.replace("http://80.242.57.16", "http://80.242.57.16:8080");
+    return url;
+  };
+
   const highlightMatch = (text: string, query: string) => {
     const parts = text.split(new RegExp(`(${query})`, "gi"));
     return parts.map((part, idx) =>
@@ -73,22 +81,24 @@ const SearchResult: FC = () => {
 
           <div className={scss.booksContainer}>
             {currentBooks.length > 0 ? (
-              currentBooks.map((item) => (
+              currentBooks.map((book) => (
                 <div
-                  onClick={() => navigate(`/details/${item.id}`)}
-                  key={item.id}
+                  onClick={() => navigate(`/details/${book.id}`)}
+                  key={book.id}
                   className={scss.cards}
                 >
                   <img
-                    src={item.book_image || "/images/default-book.jpg"}
-                    alt={`Cover of ${item.book_name}`}
-                    className={scss.bookImage}
+                    src={
+                      fixImageUrl(book.book_image) ||
+                      "https://static.vecteezy.com/system/resources/previews/009/007/126/non_2x/document-file-not-found-search-no-result-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg"
+                    }
+                    alt={book.book_name}
                   />
 
                   <div className={scss.text}>
-                    <h2>{highlightMatch(item.book_name, query)}</h2>
-                    <p className={scss.description}>{item.description}</p>
-                    <span className={scss.year}>{item.publication_year}</span>
+                    <h2>{highlightMatch(book.book_name, query)}</h2>
+                    <p className={scss.description}>{book.description}</p>
+                    <span className={scss.year}>{book.publication_year}</span>
                   </div>
                 </div>
               ))
