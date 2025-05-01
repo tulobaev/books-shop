@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaMapMarkerAlt,
   FaPhoneAlt,
-} from "react-icons/fa"; // Иконки
+} from "react-icons/fa";
 
 const Contact: FC = () => {
   return (
@@ -35,7 +35,7 @@ const Contact: FC = () => {
                   target="_blank"
                   className={scss.cardButton1}
                 >
-                  <FaWhatsapp /> Ватсапка жаз
+                  <FaWhatsapp /> Whatsapp
                 </a>
                 <a
                   href="https://www.instagram.com/oshmpu_official?igsh=MXRrNmI3YjJkb2J0eg=="

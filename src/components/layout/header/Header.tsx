@@ -13,88 +13,97 @@ const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (query.trim()) {
-      navigate(`/search/${encodeURIComponent(query.trim())}`);
+    const trimmed = query.trim();
+    if (trimmed) {
+      navigate(`/search/${encodeURIComponent(trimmed)}`);
       setQuery("");
     }
   };
+
+  const clearQuery = () => setQuery("");
 
   return (
     <header className={scss.header}>
       <div className="container">
         <div className={scss.content}>
+          {/* Логотип — desktop */}
           <div className={scss.logo} onClick={() => navigate("/")}>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="Башкы логотип" />
           </div>
 
+          {/* Навигация — мобильное меню */}
           <nav className={`${scss.nav} ${isMenuOpen ? scss.open : ""}`}>
             <div className={scss.navHeader}>
               <div className={scss.logoMobile} onClick={() => navigate("/")}>
-                <img src={anniversary} alt="LogoRight" />
+                <img src={anniversary} alt="Моб. логотип" />
               </div>
               <button
                 className={scss.closeButton}
                 onClick={toggleMenu}
-                aria-label="Close menu"
+                aria-label="Жабуу"
               >
                 <IoMdClose />
               </button>
             </div>
-            {links.map((item, index) => (
+
+            {links.map(({ link, title }, idx) => (
               <NavLink
-                key={index}
-                to={item.link}
+                key={idx}
+                to={link}
                 className={({ isActive }) =>
                   isActive ? `${scss.nav_link} ${scss.active}` : scss.nav_link
                 }
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item.title}
+                {title}
               </NavLink>
             ))}
           </nav>
 
+          {/* Поиск + бургер меню */}
           <div className={scss.menu}>
             <form className={scss.search_form} onSubmit={handleSearchSubmit}>
               <button
                 className={scss.search_button}
                 type="submit"
-                aria-label="Search"
+                aria-label="Издөө"
               >
                 <CiSearch className={scss.svg} />
               </button>
+
               <input
                 className={scss.search_input}
-                placeholder="Издөө..."
                 type="text"
+                placeholder="Издөө..."
                 required
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
-              <button
-                className={scss.reset_button}
-                type="button"
-                aria-label="Clear"
-                onClick={() => setQuery("")}
-              >
-                <IoMdClose className={scss.svg} />
-              </button>
+
+              {query && (
+                <button
+                  className={scss.reset_button}
+                  type="button"
+                  aria-label="Тазалоо"
+                  onClick={clearQuery}
+                >
+                  <IoMdClose className={scss.svg} />
+                </button>
+              )}
             </form>
 
             <div className={scss.logo}>
-              <img src={anniversary} alt="logoLeft" />
+              <img src={anniversary} alt="Маараке логотип" />
             </div>
 
             <button
               className={scss.burgerMenu}
               onClick={toggleMenu}
-              aria-label="Toggle menu"
+              aria-label="Менюну ачуу"
             >
               {isMenuOpen ? <IoMdClose /> : <RxHamburgerMenu />}
             </button>

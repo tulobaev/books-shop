@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, KeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import scss from "./BookCards.module.scss";
 import { IBook } from "../../types";
@@ -17,7 +17,14 @@ const BookCards: FC<BookCardsProps> = ({ book, onClick }) => {
     } else {
       navigate(`/details/${book.id}`);
     }
-  }, [book.id, navigate, onClick]);
+  }, [book.id, onClick, navigate]);
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleClick();
+    }
+  };
 
   const fixImageUrl = (url: string | null | undefined) => {
     if (!url) return null;
@@ -30,15 +37,16 @@ const BookCards: FC<BookCardsProps> = ({ book, onClick }) => {
   return (
     <article
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       className={scss.cards}
-      aria-label={`Book: ${book.book_name}`}
       role="button"
       tabIndex={0}
+      aria-label={`Китеп: ${book.book_name}`}
     >
       <div className={scss.imageContainer}>
         <img
-          src={fixImageUrl(book.book_image) || ""}
-          alt={`Cover of ${book.book_name}`}
+          src={imageUrl}
+          alt={`"${book.book_name}" китебинин мукабасы`}
           className={scss.bookImage}
         />
       </div>
