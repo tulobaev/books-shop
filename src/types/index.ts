@@ -27,3 +27,9 @@ export interface IBookDetails {
   like_count: string;
   viewing_count: string;
 }
+export interface IPopularBooks {
+  id: number;
+  name: string;
+  author: string;
+  view_count: number;
+}

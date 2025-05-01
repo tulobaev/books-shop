@@ -2,7 +2,9 @@ import { FC, useMemo, useState } from "react";
 import scss from "./SearchResult.module.scss";
 import { useGetProductQuery } from "../../store/api/book";
 import { useNavigate, useParams } from "react-router-dom";
-import { Pagination, Stack } from "@mui/material";
+import Skeleton from "@mui/material/Skeleton";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 import ScrollToTop from "../../components/avtoScroll/AvtoScroll";
 
 const SearchResult: FC = () => {
@@ -12,17 +14,17 @@ const SearchResult: FC = () => {
 
   const filteredBooks = useMemo(() => {
     return books.filter((item) =>
-      item.book_name.toLowerCase().includes(query.trim().toLowerCase())
+      item.book_name.trim().toLowerCase().includes(query.trim().toLowerCase())
     );
   }, [books, query]);
 
   const [page, setPage] = useState(1);
-  const itemPerPages = 16;
-  const count = Math.ceil(filteredBooks.length / itemPerPages);
+  const itemsPerPages = 16;
+  const count = Math.ceil(filteredBooks.length / itemsPerPages);
 
   const currentBooks = filteredBooks.slice(
-    (page - 1) * itemPerPages,
-    page * itemPerPages
+    (page - 1) * itemsPerPages,
+    page * itemsPerPages
   );
 
   const handlePageChange = (
@@ -33,19 +35,40 @@ const SearchResult: FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (isLoading) return <div className={scss.loading}>Загрузка...</div>;
+  const highlightMatch = (text: string, query: string) => {
+    const parts = text.split(new RegExp(`(${query})`, "gi"));
+    return parts.map((part, idx) =>
+      part.toLowerCase() === query.toLowerCase() ? (
+        <b key={idx} style={{ fontWeight: 800, color: "black" }}>
+          {part}
+        </b>
+      ) : (
+        part
+      )
+    );
+  };
+
+  if (isLoading)
+    return (
+      <div className="container">
+        <div className={scss.booksSceleton}>
+          {Array.from({ length: 4 }).map((_, idx) => (
+            <div className={scss.cards} key={idx}>
+              <Skeleton variant="rectangular" width={150} height={220} />
+              <Skeleton variant="text" width="150px" />
+              <Skeleton variant="text" width="150px" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
 
   return (
     <section className={scss.SearchResult}>
       <div className="container">
         <div className={scss.content}>
-          <div className={scss.btn}>
-            <button onClick={() => navigate("/")} className={scss.back}>
-              ← Артка
-            </button>
-          </div>
           <div className={scss.title}>
-            <h1>Сиз издеген китептер</h1>
+            <h1>Сиздин сурамыңыз боюнча табылган китептер</h1>
           </div>
 
           <div className={scss.booksContainer}>
@@ -63,19 +86,23 @@ const SearchResult: FC = () => {
                   />
 
                   <div className={scss.text}>
-                    <h2>{item.book_name}</h2>
+                    <h2>{highlightMatch(item.book_name, query)}</h2>
                     <p className={scss.description}>{item.description}</p>
                     <span className={scss.year}>{item.publication_year}</span>
                   </div>
                 </div>
               ))
             ) : (
-              <p className={scss.noResults}>Сиз издеген китеп табылган жок</p>
+              <>
+                <p className={scss.noResults}>
+                  Китеп табылган жок 😕. Балким, башкача издеп көрөсүзбү?
+                </p>
+              </>
             )}
           </div>
         </div>
 
-        {filteredBooks.length > itemPerPages && (
+        {filteredBooks.length > itemsPerPages && (
           <div className={scss.pagination}>
             <Stack spacing={2}>
               <Pagination
