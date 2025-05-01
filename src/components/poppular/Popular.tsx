@@ -2,11 +2,11 @@ import { FC, useState } from "react";
 import scss from "./Popular.module.scss";
 import { Pagination, Stack } from "@mui/material";
 import ScrollToTop from "../avtoScroll/AvtoScroll";
-import BookCards from "../../ui/cards/BookCards";
-import { IBook } from "../../types";
+import { IPopularBooks } from "../../types";
+import PopularCards from "../../ui/cards/PopularCards";
 
 interface PopularProps {
-  books: IBook[];
+  books: IPopularBooks[];
 }
 
 const Popular: FC<PopularProps> = ({ books }) => {
@@ -32,7 +32,7 @@ const Popular: FC<PopularProps> = ({ books }) => {
 
       <div className={scss.content}>
         {currentBooks.map((book) => (
-          <BookCards key={book.id} book={book} />
+          <PopularCards key={book.id} book={book} />
         ))}
       </div>
 

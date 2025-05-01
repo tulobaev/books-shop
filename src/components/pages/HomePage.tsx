@@ -59,7 +59,7 @@ const HomePage: FC = () => {
               <Popular books={popularBooks} />
             ) : (
               <BookList
-                books={filteredBooks}
+                books={filteredBooks as IBook[]}
                 selectedCategory={selectedCategory}
               />
             )}
