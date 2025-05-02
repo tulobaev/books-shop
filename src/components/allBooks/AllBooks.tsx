@@ -4,6 +4,7 @@ import BookCards from "../../ui/cards/BookCards";
 import { Pagination, Stack } from "@mui/material";
 import ScrollToTop from "../avtoScroll/AvtoScroll";
 import { IBook } from "../../types";
+import not from "../../assets/notFound.svg";
 
 interface AllBooksProps {
   books: IBook[];
@@ -29,11 +30,39 @@ const AllBooks: FC<AllBooksProps> = ({ books = [] }) => {
   return (
     <section className={scss.AllBooks}>
       <h1>Баардык китептер</h1>
-
       <>
         <div className={scss.content}>
           {currentBooks.length === 0 ? (
-            <h3>aaa</h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gridColumn: "1 / -1",
+                width: "100%",
+              }}
+              className={scss.notFound}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+                className="text"
+              >
+                <h2>Азырынча китептер жок</h2>
+                <img
+                  style={{
+                    maxWidth: "300px",
+                    width: "100%",
+                    height: "300px",
+                  }}
+                  src={not}
+                  alt=""
+                />
+              </div>
+            </div>
           ) : (
             currentBooks.map((item) => <BookCards key={item.id} book={item} />)
           )}

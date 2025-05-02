@@ -146,6 +146,11 @@
           transform: translateY(-2px);
           box-shadow: 0 8px 18px rgba(167, 89, 40, 0.3);
         }
+        .like:disabled {
+          background-color: #d3d3d3;
+          color: #a1a1a1;
+          cursor: not-allowed;
+        }
       }
 
       .download {
@@ -259,15 +264,4 @@
       max-width: 200px;
     }
   }
-}
-
-.like {
-  background-color: #ff4d4f;
-  color: white;
-  cursor: pointer;
-}
-
-.liked {
-  background-color: gray;
-  cursor: not-allowed;
 }

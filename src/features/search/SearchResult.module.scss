@@ -1,6 +1,6 @@
 .SearchResult {
   padding: 50px 0;
-  min-height: 100vh;
+  min-height: 90vh;
 
   .content {
     display: flex;
@@ -13,11 +13,22 @@
       justify-content: center;
 
       h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1a1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        font-size: clamp(1.188rem, 1.063rem + 0.63vw, 1.625rem);
+        color: #fff;
+        background-color: #3870ffe7;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.386);
+        border-radius: 10px;
+        top: 110px;
+        backdrop-filter: blur(10px);
+        z-index: 100;
         text-align: center;
-        margin: 0;
       }
     }
 
@@ -25,6 +36,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 24px;
+      grid-column: 1 / -1;
 
       .cards {
         background-color: #fff;

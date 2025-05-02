@@ -6,6 +6,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import ScrollToTop from "../../components/avtoScroll/AvtoScroll";
+import not from "../../assets/notFound.svg";
 
 const SearchResult: FC = () => {
   const { data: books = [], isLoading } = useGetProductQuery();
@@ -62,7 +63,7 @@ const SearchResult: FC = () => {
         <div className={scss.booksSceleton}>
           {Array.from({ length: 4 }).map((_, idx) => (
             <div className={scss.cards} key={idx}>
-              <Skeleton variant="rectangular" width={150} height={220} />
+              <Skeleton variant="rectangular" width={250} height={320} />
               <Skeleton variant="text" width="150px" />
               <Skeleton variant="text" width="150px" />
             </div>
@@ -76,7 +77,11 @@ const SearchResult: FC = () => {
       <div className="container">
         <div className={scss.content}>
           <div className={scss.title}>
-            <h1>Сиздин сурамыңыз боюнча табылган китептер</h1>
+            {currentBooks.length > 0 ? (
+              <h1>Сиздин сурамыңыз боюнча табылган китептер</h1>
+            ) : (
+              <h1>Сурамыңыз боюнча эч кандай китептер табылган жок</h1>
+            )}
           </div>
 
           <div className={scss.booksContainer}>
@@ -97,17 +102,34 @@ const SearchResult: FC = () => {
 
                   <div className={scss.text}>
                     <h2>{highlightMatch(book.book_name, query)}</h2>
-                    <p className={scss.description}>{book.description}</p>
+                    <p className={scss.description}>
+                      {book.category?.category_name}
+                    </p>
                     <span className={scss.year}>{book.publication_year}</span>
                   </div>
                 </div>
               ))
             ) : (
-              <>
-                <p className={scss.noResults}>
-                  Китеп табылган жок 😕. Балким, башкача издеп көрөсүзбү?
-                </p>
-              </>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gridColumn: "1 / -1",
+                  width: "100%",
+                }}
+                className={scss.notFound}
+              >
+                <img
+                  style={{
+                    maxWidth: "400px",
+                    width: "100%",
+                    height: "400px",
+                  }}
+                  src={not}
+                  alt=""
+                />
+              </div>
             )}
           </div>
         </div>

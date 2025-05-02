@@ -52,7 +52,7 @@ const HomePage: FC = () => {
             </div>
 
             {booksLoading || categoriesLoading || popularLoading ? (
-              <p>Жүктөлүүдө...</p>
+              <p className={scss.laod}>Жүктөлүүдө...</p>
             ) : selectedCategory === "all" ? (
               <AllBooks books={allBooks} />
             ) : selectedCategory === "popular" ? (

@@ -3,6 +3,7 @@ import scss from "./SimilarBook.module.scss";
 import BookCards from "../../../ui/cards/BookCards";
 import { IBook } from "../../../types";
 import { useGetProductQuery } from "../../../store/api/book";
+import Loader from "../../../ui/loader/Loader";
 
 interface SimilarBooksProps {
   category: { category_name: string };
@@ -22,7 +23,7 @@ const SimilarBooks: FC<SimilarBooksProps> = ({ category }) => {
   }, [allBooks, category]);
 
   if (isLoading) {
-    return <p>Loading similar books...</p>;
+    return <Loader />;
   }
 
   return (

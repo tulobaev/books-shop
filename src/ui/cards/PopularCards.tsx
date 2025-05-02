@@ -19,6 +19,14 @@ const PopularCards: FC<BookCardsProps> = ({ book, onClick }) => {
     }
   }, [book.id, onClick, navigate]);
 
+  const fixImageUrl = (url: string | null | undefined) => {
+    if (!url) return null;
+    if (url.startsWith("http://80.242.57.16:8080")) return url;
+    if (url.startsWith("http://80.242.57.16"))
+      return url.replace("http://80.242.57.16", "http://80.242.57.16:8080");
+    return url;
+  };
+
   return (
     <article
       onClick={handleClick}
@@ -32,9 +40,11 @@ const PopularCards: FC<BookCardsProps> = ({ book, onClick }) => {
     >
       <div className={scss.imageContainer}>
         <img
-          src={"/images/default-book.jpg"}
-          alt={`"${book.name}" китебинин мукабасы`}
-          className={scss.bookImage}
+          src={
+            fixImageUrl(book.name) ||
+            "https://static.vecteezy.com/system/resources/previews/009/007/126/non_2x/document-file-not-found-search-no-result-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg"
+          }
+          alt={book.name}
         />
       </div>
       <div className={scss.text}>
