@@ -18,12 +18,11 @@ const DetailsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading } = useGetBookByIdQuery(Number(id));
   const [likeBook] = useLikeBookMutation();
-  console.log(book);
 
   const handleLike = async () => {
     if (id) {
       try {
-        console.log("Sending like request for book ID:", id); // Для отладки
+        console.log("Sending like request for book ID:", id);
         await likeBook(Number(id));
       } catch (error: any) {
         console.error("Failed to like the book:", error);
@@ -79,9 +78,25 @@ const DetailsPage: FC = () => {
               <p className={scss.description}>{book.description}</p>
 
               <div className={scss.buttons}>
-                <button className={scss.read}>
-                  <FaBookOpen /> Онлайн окуу
-                </button>
+                {fixImageUrl(book.book_pdf) ? (
+                  <a
+                    href={fixImageUrl(book.book_pdf) as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={scss.read}
+                  >
+                    <FaBookOpen /> Онлайн окуу
+                  </a>
+                ) : (
+                  <button
+                    className={scss.read}
+                    disabled
+                    title="PDF табылган жок"
+                  >
+                    <FaBookOpen /> Онлайн окуу
+                  </button>
+                )}
+
                 <button className={scss.download}>
                   <FaDownload /> Жүктөө
                 </button>
