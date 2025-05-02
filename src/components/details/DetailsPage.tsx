@@ -6,17 +6,20 @@ import {
   FaRegClock,
   FaEye,
   FaHeart,
-  FaDownload,
   FaBookOpen,
+  FaDownload,
 } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetBookByIdQuery, useLikeBookMutation } from "../../store/api/book";
 import SimilarBooks from "./similar/SimilarBooks";
+import not from "../../assets/notFound.svg";
+import Loader from "../../ui/loader/Loader";
+// import DownloadButton from "./Dowload/Dowloader";
 
 const DetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const { data: book, isLoading } = useGetBookByIdQuery(Number(id));
+  const { data: book, isLoading, refetch } = useGetBookByIdQuery(Number(id));
   const [likeBook] = useLikeBookMutation();
 
   const handleLike = async () => {
@@ -24,18 +27,40 @@ const DetailsPage: FC = () => {
       try {
         console.log("Sending like request for book ID:", id);
         await likeBook(Number(id));
-      } catch (error: any) {
+        refetch();
+      } catch (error) {
         console.error("Failed to like the book:", error);
       }
     }
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (!book) {
-    return <p>Book not found</p>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gridColumn: "1 / -1",
+          width: "100%",
+        }}
+        className={scss.notFound}
+      >
+        <img
+          style={{
+            maxWidth: "400px",
+            width: "100%",
+            height: "400px",
+          }}
+          src={not}
+          alt=""
+        />
+      </div>
+    );
   }
 
   const fixImageUrl = (url: string | null | undefined) => {
@@ -78,6 +103,7 @@ const DetailsPage: FC = () => {
               <p className={scss.description}>{book.description}</p>
 
               <div className={scss.buttons}>
+   
                 {fixImageUrl(book.book_pdf) ? (
                   <a
                     href={fixImageUrl(book.book_pdf) as string}
@@ -96,10 +122,11 @@ const DetailsPage: FC = () => {
                     <FaBookOpen /> Онлайн окуу
                   </button>
                 )}
+                             {/* <DownloadButton
+                  pdfUrl={`http://80.242.57.16:8080/pdf/${book.id}/`}
+                  filename={`${book.book_name}.pdf`}
+                /> */}
 
-                <button className={scss.download}>
-                  <FaDownload /> Жүктөө
-                </button>
                 <button className={scss.like} onClick={handleLike}>
                   <FaHeart
                     style={{ color: book.like_count ? "red" : "white" }}
