@@ -25,6 +25,7 @@ const DetailsPage: FC = () => {
   const handleLike = async () => {
     if (id) {
       try {
+        console.log("Sending like request for book ID:", id);
         await likeBook(Number(id));
         refetch();
       } catch (error) {
@@ -102,16 +103,30 @@ const DetailsPage: FC = () => {
               <p className={scss.description}>{book.description}</p>
 
               <div className={scss.buttons}>
-                <button className={scss.read}>
-                  <FaBookOpen /> Онлайн окуу
-                </button>
-                {/* <DownloadButton
+   
+                {fixImageUrl(book.book_pdf) ? (
+                  <a
+                    href={fixImageUrl(book.book_pdf) as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={scss.read}
+                  >
+                    <FaBookOpen /> Онлайн окуу
+                  </a>
+                ) : (
+                  <button
+                    className={scss.read}
+                    disabled
+                    title="PDF табылган жок"
+                  >
+                    <FaBookOpen /> Онлайн окуу
+                  </button>
+                )}
+                             {/* <DownloadButton
                   pdfUrl={`http://80.242.57.16:8080/pdf/${book.id}/`}
                   filename={`${book.book_name}.pdf`}
                 /> */}
-                <button className={scss.download}>
-                  <FaDownload /> Жүктөө
-                </button>
+
                 <button className={scss.like} onClick={handleLike}>
                   <FaHeart
                     style={{ color: book.like_count ? "red" : "white" }}
