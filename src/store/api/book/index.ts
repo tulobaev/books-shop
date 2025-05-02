@@ -31,7 +31,7 @@ const api = index.injectEndpoints({
       query: (id) => ({
         url: `/like/`,
         method: "POST",
-        body: { book: id, unique_field: id }, // Ошибка может быть здесь
+        body: { book: id, unique_field: id },
       }),
     }),
   }),
