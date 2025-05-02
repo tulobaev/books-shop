@@ -103,7 +103,6 @@ const DetailsPage: FC = () => {
               <p className={scss.description}>{book.description}</p>
 
               <div className={scss.buttons}>
-   
                 {fixImageUrl(book.book_pdf) ? (
                   <a
                     href={fixImageUrl(book.book_pdf) as string}
@@ -122,7 +121,7 @@ const DetailsPage: FC = () => {
                     <FaBookOpen /> Онлайн окуу
                   </button>
                 )}
-                             {/* <DownloadButton
+                {/* <DownloadButton
                   pdfUrl={`http://80.242.57.16:8080/pdf/${book.id}/`}
                   filename={`${book.book_name}.pdf`}
                 /> */}
