@@ -101,23 +101,26 @@
   }
 
   @media (max-width: 600px) {
-    .content {
-      padding: 18px;
-      gap: 12px;
-    }
-    .icon svg {
-      width: 70px;
-      height: 70px;
-    }
-    h1 {
-      font-size: 1.75rem;
-    }
-    p {
-      font-size: 0.95rem;
-    }
-    .button {
-      padding: 9px 22px;
-      font-size: 0.95rem;
+    .NotFound {
+      min-height: 70vh;
+      .content {
+        padding: 18px;
+        gap: 12px;
+      }
+      .icon svg {
+        width: 70px;
+        height: 70px;
+      }
+      h1 {
+        font-size: 1.75rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+      .button {
+        padding: 9px 22px;
+        font-size: 0.95rem;
+      }
     }
   }
 
