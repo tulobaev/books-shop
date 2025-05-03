@@ -14,6 +14,7 @@ import { useGetBookByIdQuery, useLikeBookMutation } from "../../store/api/book";
 import SimilarBooks from "./similar/SimilarBooks";
 import not from "../../assets/notFound.svg";
 import Loader from "../../ui/loader/Loader";
+import { useUserId } from "../../hooks";
 // import DownloadButton from "./Dowload/Dowloader";
 
 const DetailsPage: FC = () => {
@@ -21,12 +22,13 @@ const DetailsPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, refetch } = useGetBookByIdQuery(Number(id));
   const [likeBook] = useLikeBookMutation();
+  const UserId = useUserId();
 
   const handleLike = async () => {
     if (id) {
       try {
         console.log("Sending like request for book ID:", id);
-        await likeBook(Number(id));
+        await likeBook({ book_id: Number(id), uid: UserId });
         refetch();
       } catch (error) {
         console.error("Failed to like the book:", error);

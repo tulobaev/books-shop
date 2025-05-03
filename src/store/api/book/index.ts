@@ -27,11 +27,11 @@ const api = index.injectEndpoints({
         method: "GET",
       }),
     }),
-    likeBook: build.mutation<void, number>({
-      query: (id) => ({
+    likeBook: build.mutation<void, { book_id: number; uid: string | null }>({
+      query: ({ book_id, uid }) => ({
         url: `/like/`,
         method: "POST",
-        body: { book: id, unique_field: id },
+        body: { book: book_id, unique_field: uid },
       }),
     }),
   }),
