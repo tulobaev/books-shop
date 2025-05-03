@@ -7,7 +7,6 @@ import {
   FaEye,
   FaHeart,
   FaBookOpen,
-  FaDownload,
 } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetBookByIdQuery, useLikeBookMutation } from "../../store/api/book";
@@ -15,7 +14,6 @@ import SimilarBooks from "./similar/SimilarBooks";
 import not from "../../assets/notFound.svg";
 import Loader from "../../ui/loader/Loader";
 import { useUserId } from "../../hooks";
-// import DownloadButton from "./Dowload/Dowloader";
 
 const DetailsPage: FC = () => {
   const navigate = useNavigate();
