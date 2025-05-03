@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import scss from "./DetailsPage.module.scss";
 import {
   FaUser,
@@ -7,6 +7,7 @@ import {
   FaEye,
   FaHeart,
   FaBookOpen,
+  FaDownload,
 } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetBookByIdQuery, useLikeBookMutation } from "../../store/api/book";
@@ -14,6 +15,7 @@ import SimilarBooks from "./similar/SimilarBooks";
 import not from "../../assets/notFound.svg";
 import Loader from "../../ui/loader/Loader";
 import { useUserId } from "../../hooks";
+import { handleDownload } from "./download/Download";
 
 const DetailsPage: FC = () => {
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ const DetailsPage: FC = () => {
   const { data: book, isLoading, refetch } = useGetBookByIdQuery(Number(id));
   const [likeBook] = useLikeBookMutation();
   const UserId = useUserId();
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const handleLike = async () => {
     if (id) {
@@ -121,10 +124,22 @@ const DetailsPage: FC = () => {
                     <FaBookOpen /> Онлайн окуу
                   </button>
                 )}
-                {/* <DownloadButton
-                  pdfUrl={`http://80.242.57.16:8080/pdf/${book.id}/`}
-                  filename={`${book.book_name}.pdf`}
-                /> */}
+                <button
+                  disabled={isDownloading}
+                  onClick={() =>
+                    id &&
+                    book &&
+                    handleDownload(id, book.book_name, setIsDownloading)
+                  }
+                  className={scss.download}
+                  style={{
+                    cursor: isDownloading ? "not-allowed" : "pointer",
+                    opacity: isDownloading ? 0.7 : 1,
+                  }}
+                >
+                  <FaDownload style={{ marginRight: "8px" }} />
+                  {isDownloading ? "Жүктөлүп жатат..." : "Жүктоо"}
+                </button>
 
                 <button className={scss.like} onClick={handleLike}>
                   <FaHeart
