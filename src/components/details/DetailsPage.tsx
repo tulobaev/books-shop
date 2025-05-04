@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import scss from "./DetailsPage.module.scss";
 import {
   FaUser,
@@ -24,16 +24,30 @@ const DetailsPage: FC = () => {
   const [likeBook] = useLikeBookMutation();
   const UserId = useUserId();
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const likedBooks = JSON.parse(localStorage.getItem("Liked-Books") || "[]");
+    console.log("Liked books from localStorage:", likedBooks);
+    setIsLiked(likedBooks.includes(id));
+  }, [id]);
 
   const handleLike = async () => {
-    if (id) {
-      try {
-        console.log("Sending like request for book ID:", id);
-        await likeBook({ book_id: Number(id), uid: UserId });
-        refetch();
-      } catch (error) {
-        console.error("Failed to like the book:", error);
-      }
+    const likedBooks = JSON.parse(localStorage.getItem("Liked-Books") || "[]");
+    console.log("Current likedBooks before update:", likedBooks);
+    if (likedBooks.includes(id)) {
+      alert("Вы уже лайкнули эту книгу!");
+      return;
+    }
+    try {
+      await likeBook({ book_id: Number(id), uid: UserId });
+      likedBooks.push(id);
+      localStorage.setItem("Liked-Books", JSON.stringify(likedBooks));
+      console.log("Updated likedBooks:", likedBooks);
+      setIsLiked(true);
+      refetch();
+    } catch (error) {
+      console.error("Failed to like the book:", error);
     }
   };
 
@@ -142,11 +156,9 @@ const DetailsPage: FC = () => {
                 </button>
 
                 <button className={scss.like} onClick={handleLike}>
-                  <FaHeart
-                    style={{ color: book.like_count ? "red" : "white" }}
-                  />{" "}
-                  Жакты
+                  <FaHeart style={{ color: isLiked ? "red" : "white" }} /> Жакты
                 </button>
+
                 <button onClick={() => navigate("/")} className={scss.back}>
                   ←Артка
                 </button>
