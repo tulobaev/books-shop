@@ -1,6 +1,5 @@
 #Footer {
   padding-block: 40px;
-  // background-color: #3871ff;
   background: linear-gradient(160deg, #3871ff 0%, #1cbfff 100%);
   color: #fff;
   .content {
@@ -12,5 +11,15 @@
       text-align: center;
       line-height: 25px;
     }
+  }
+}
+@media (max-width: 800px) {
+  #Footer {
+    padding-block: 25px;
+  }
+}
+@media (max-width: 500px) {
+  #Footer {
+    padding-block: 15px;
   }
 }

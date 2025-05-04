@@ -18,7 +18,7 @@
         align-items: center;
         width: 100%;
         padding: 1rem;
-        font-size: clamp(1.188rem, 1.063rem + 0.63vw, 1.625rem);
+        font-size: clamp(1.063rem, 0.914rem + 0.74vw, 1.563rem);
         color: #fff;
         background-color: #3870ffe7;
         font-weight: 500;
@@ -202,10 +202,6 @@
       .title {
         flex-direction: column;
 
-        h1 {
-          font-size: 1.5rem;
-        }
-
         .back {
           width: 100%;
           justify-content: center;
@@ -229,15 +225,6 @@
 
     .container {
       padding: 0 15px;
-    }
-
-    .content {
-      .title {
-        h1 {
-          font-size: 1.25rem;
-        }
-      }
-
       .books-container {
         grid-template-columns: 1fr;
       }
