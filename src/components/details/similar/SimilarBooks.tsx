@@ -7,20 +7,23 @@ import Loader from "../../../ui/loader/Loader";
 
 interface SimilarBooksProps {
   category: { category_name: string };
+  currentBookId: number;
 }
 
-const SimilarBooks: FC<SimilarBooksProps> = ({ category }) => {
+const SimilarBooks: FC<SimilarBooksProps> = ({ category, currentBookId }) => {
   const [filteredBooks, setFilteredBooks] = useState<IBook[]>([]);
   const { data: allBooks, isLoading } = useGetProductQuery();
 
   useEffect(() => {
     if (allBooks) {
       const filtered = allBooks.filter(
-        (book) => book.category?.category_name === category.category_name
+        (book) =>
+          book.category?.category_name === category.category_name &&
+          book.id !== currentBookId
       );
       setFilteredBooks(filtered);
     }
-  }, [allBooks, category]);
+  }, [allBooks, category, currentBookId]);
 
   if (isLoading) {
     return <Loader />;

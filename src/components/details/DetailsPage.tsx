@@ -162,7 +162,7 @@ const DetailsPage: FC = () => {
               />
             </div>
           </div>
-          <SimilarBooks category={book.category} />
+          <SimilarBooks category={book.category} currentBookId={book.id} />
         </div>
       </div>
     </section>
