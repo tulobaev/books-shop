@@ -157,10 +157,11 @@ $accent: #007aff;
 
   .searchDropdown {
     position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    width: 100%;
-    max-height: 280px;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 290px;
+    max-width: 90vw;
     overflow-y: auto;
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
@@ -222,6 +223,9 @@ $accent: #007aff;
     .search_form {
       --width-of-input: 200px;
     }
+    .searchDropdown {
+      width: 190px;
+    }
     .nav {
       gap: 15px;
     }
@@ -231,9 +235,6 @@ $accent: #007aff;
     .nav {
       gap: 20px;
     }
-    .search_form {
-      --width-of-input: 180px;
-    }
   }
 
   @media (max-width: 870px) {
@@ -241,9 +242,6 @@ $accent: #007aff;
     .nav,
     .menu {
       gap: 10px;
-    }
-    .search_form {
-      --width-of-input: 150px;
     }
     .logo img,
     .menu .logo img {
@@ -326,6 +324,9 @@ $accent: #007aff;
       height: 35px;
       --width-of-input: 100%;
     }
+    .searchDropdown {
+      width: 240px;
+    }
   }
   @media (max-width: 480px) {
     .logo img {
@@ -339,6 +340,9 @@ $accent: #007aff;
     }
     .menu {
       gap: 20px;
+    }
+    .searchDropdown {
+      width: 230px;
     }
   }
 }
