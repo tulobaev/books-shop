@@ -18,6 +18,8 @@ const Popular: FC<PopularProps> = ({ books }) => {
     page * itemPerPages
   );
 
+  console.log(books);
+
   const handlePageChange = (
     _event: React.ChangeEvent<unknown>,
     value: number
