@@ -22,7 +22,7 @@ const DetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, refetch } = useGetBookByIdQuery(Number(id));
-  const userId = useUserId(id); // Используем только один хук
+  const userId = useUserId(id);
   const [isDownloading, setIsDownloading] = useState(false);
   useViewLogic(id, userId);
 
