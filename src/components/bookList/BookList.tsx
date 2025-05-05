@@ -2,6 +2,7 @@ import scss from "./BookList.module.scss";
 import BookCards from "../../ui/cards/BookCards";
 import { IBook } from "../../types";
 import not from "../../assets/notFound.svg";
+
 interface Props {
   books: IBook[];
   selectedCategory: string;
