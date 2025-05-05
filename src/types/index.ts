@@ -26,6 +26,7 @@ export interface IBookDetails {
   description: string;
   like_count: string;
   viewing_count: string;
+  is_liked: boolean;
 }
 export interface IPopularBooks {
   id: number;
