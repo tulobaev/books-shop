@@ -132,11 +132,7 @@ const DetailsPage: FC = () => {
                   {isDownloading ? "Жүктөлүп жатат..." : "Жүктоо"}
                 </button>
 
-                <button
-                  onClick={handleLike}
-                  className={scss.like}
-                  disabled={!UserId || isLiked}
-                >
+                <button onClick={handleLike} className={scss.like}>
                   <FaHeart style={{ color: isLiked ? "red" : "white" }} /> Жакты
                 </button>
 

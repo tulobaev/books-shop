@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLikeBookMutation } from "../../store/api/book";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const LIKED_BOOKS_KEY = "Liked-Books";
 
 export const useLikeBook = (
@@ -13,7 +14,9 @@ export const useLikeBook = (
 
   const handleLike = async () => {
     if (!bookId || !userId) {
-      alert("Ошибка: отсутствует ID книги или пользователя");
+      toast.error("Лайк коюуда ката кетти", {
+        position: "top-right",
+      });
       return;
     }
 
@@ -21,7 +24,9 @@ export const useLikeBook = (
       localStorage.getItem(LIKED_BOOKS_KEY) || "[]"
     );
     if (likedBooks.includes(bookId)) {
-      alert("Вы уже лайкнули эту книгу!");
+      toast.warn("Бул китепке лайк койгонсуз", {
+        position: "top-right",
+      });
       return;
     }
 
