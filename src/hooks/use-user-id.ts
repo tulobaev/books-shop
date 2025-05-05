@@ -31,9 +31,6 @@ export const userID = (bookId: string | undefined) => {
   return userId;
 };
 
-// ? VIEWING
-// ? VIEWING
-
 const VIEWED_KEY = "Viewed-Books";
 
 export const useViewLogic = (
@@ -41,24 +38,37 @@ export const useViewLogic = (
   userId: string | null
 ) => {
   const [viewLog] = useViewingCountMutation();
+  const [hasTrackedView, setHasTrackedView] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!bookId || !userId) return;
+    const trackView = async () => {
+      if (!bookId || !userId || hasTrackedView) return;
 
-    let viewedBooks: string[] = [];
+      try {
+        let viewedBooks: string[] = [];
+        try {
+          const stored = localStorage.getItem(VIEWED_KEY);
+          viewedBooks = stored ? JSON.parse(stored) : [];
+        } catch (error) {
+          console.error("Ошибка чтения Viewed-Books из localStorage:", error);
+          viewedBooks = [];
+        }
 
-    try {
-      const stored = localStorage.getItem(VIEWED_KEY);
-      viewedBooks = stored ? JSON.parse(stored) : [];
-    } catch (error) {
-      console.error("Ошибка чтения Viewed-Books из localStorage:", error);
-      viewedBooks = [];
-    }
+        const viewKey = `${bookId}-${userId}`;
 
-    if (!viewedBooks.includes(bookId)) {
-      viewLog({ book_idView: Number(bookId), usid: userId });
-      viewedBooks.push(bookId);
-      localStorage.setItem(VIEWED_KEY, JSON.stringify(viewedBooks));
-    }
-  }, [bookId, userId, viewLog]);
+        if (!viewedBooks.includes(viewKey)) {
+          await viewLog({ book_idView: Number(bookId), usid: userId }).unwrap();
+
+          viewedBooks.push(viewKey);
+          localStorage.setItem(VIEWED_KEY, JSON.stringify(viewedBooks));
+        }
+
+        setHasTrackedView(true);
+      } catch (error) {
+        console.error("Error tracking view:", error);
+      }
+    };
+
+    trackView();
+  }, [bookId, userId, viewLog, hasTrackedView]);
 };
