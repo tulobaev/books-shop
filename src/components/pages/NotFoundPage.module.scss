@@ -1,5 +1,5 @@
 .NotFound {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,19 +16,12 @@
     padding: 30px;
     background: #fff;
     border-radius: 16px;
+    text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
-  .icon {
-    svg {
-      width: 100px;
-      height: 100px;
-      animation: pulseRotate 3s infinite ease-in-out;
-    }
-  }
-
   h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.25rem, 1.018rem + 1.16vw, 2.063rem);
     font-weight: 700;
     color: #333;
     margin: 0;
@@ -36,6 +29,7 @@
 
   p {
     font-size: clamp(0.9rem, 2vw, 1.2rem);
+    line-height: 20px;
     color: #666;
     margin: 0;
   }
@@ -59,41 +53,12 @@
     }
   }
 
-  // Анимация для иконки
-  @keyframes pulseRotate {
-    0% {
-      transform: scale(1) rotate(0deg);
-    }
-    50% {
-      transform: scale(1.05) rotate(5deg);
-    }
-    100% {
-      transform: scale(1) rotate(0deg);
-    }
-  }
-
   // Адаптивность
   @media (max-width: 768px) {
     .content {
       padding: 20px;
       gap: 15px;
     }
-
-    .icon {
-      svg {
-        width: 80px;
-        height: 80px;
-      }
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
-    }
-
     .button {
       padding: 10px 25px;
       font-size: 1rem;
@@ -101,26 +66,13 @@
   }
 
   @media (max-width: 600px) {
-    .NotFound {
-      min-height: 70vh;
-      .content {
-        padding: 18px;
-        gap: 12px;
-      }
-      .icon svg {
-        width: 70px;
-        height: 70px;
-      }
-      h1 {
-        font-size: 1.75rem;
-      }
-      p {
-        font-size: 0.95rem;
-      }
-      .button {
-        padding: 9px 22px;
-        font-size: 0.95rem;
-      }
+    .content {
+      padding: 18px;
+      gap: 12px;
+    }
+    .button {
+      padding: 9px 22px;
+      font-size: 0.95rem;
     }
   }
 
@@ -129,22 +81,6 @@
       padding: 15px;
       gap: 10px;
     }
-
-    .icon {
-      svg {
-        width: 60px;
-        height: 60px;
-      }
-    }
-
-    h1 {
-      font-size: 1.5rem;
-    }
-
-    p {
-      font-size: 0.9rem;
-    }
-
     .button {
       padding: 8px 20px;
       font-size: 0.9rem;
