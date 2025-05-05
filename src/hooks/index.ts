@@ -1,1 +1,1 @@
-export { useUserId } from "./use-user-id";
+export { userID } from "./use-user-id";
