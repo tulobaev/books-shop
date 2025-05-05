@@ -1,6 +1,7 @@
 import { FC } from "react";
 import scss from "./NotFoundPage.module.scss";
 import { Link } from "react-router-dom";
+import not from "../../assets/notFound.svg";
 
 const NotFoundPage: FC = () => {
   return (
@@ -8,20 +9,26 @@ const NotFoundPage: FC = () => {
       <div className="container">
         <div className={scss.content}>
           <div className={scss.icon}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100"
-              height="100"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#666"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gridColumn: "1 / -1",
+                width: "100%",
+              }}
+              className={scss.notFound}
             >
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-            </svg>
+              <img
+                style={{
+                  maxWidth: "390px",
+                  width: "100%",
+                  height: "350px",
+                }}
+                src={not}
+                alt=""
+              />
+            </div>
           </div>
           <h1>404 - Баракча табылган жок</h1>
           <p>
