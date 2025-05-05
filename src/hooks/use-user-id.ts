@@ -3,7 +3,7 @@ import { useViewingCountMutation } from "../store/api/book";
 
 const USER_ID_KEY = "User-Ids";
 
-export const userID = (bookId: string | undefined) => {
+export const useUserId = (bookId: string | undefined) => {
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {

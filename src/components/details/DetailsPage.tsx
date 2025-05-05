@@ -14,7 +14,7 @@ import { useGetBookByIdQuery } from "../../store/api/book";
 import SimilarBooks from "./similar/SimilarBooks";
 import not from "../../assets/notFound.svg";
 import Loader from "../../ui/loader/Loader";
-import { userID, useViewLogic } from "../../hooks/use-user-id";
+import { useUserId, useViewLogic } from "../../hooks/use-user-id";
 import { useLikeBook } from "../../hooks/like/Like";
 import { handleDownload } from "./download/Download";
 
@@ -22,9 +22,9 @@ const DetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, refetch } = useGetBookByIdQuery(Number(id));
-  const UserId = userID(id);
+  const UserId = useUserId(id);
   const [isDownloading, setIsDownloading] = useState(false);
-  const userId = userID(id);
+  const userId = useUserId(id);
   useViewLogic(id, userId);
 
   const { isLiked, setIsLiked, handleLike } = useLikeBook(id, UserId, refetch);
