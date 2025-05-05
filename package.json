@@ -11,12 +11,8 @@
   },
   "dependencies": {
     "@2gis/mapgl": "^1.58.1",
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.0.2",
-    "@react-google-maps/api": "^2.20.6",
     "@reduxjs/toolkit": "^2.7.0",
-    "aos": "^2.3.4",
     "axios": "^1.9.0",
     "react": "^19.0.0",
     "react-debounce-input": "^3.3.0",
@@ -25,9 +21,9 @@
     "react-loader-spinner": "^6.1.6",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.5.1",
+    "react-toastify": "^11.0.5",
     "sass": "^1.86.3",
-    "swiper": "^11.2.6",
-    "uuid": "^11.1.0"
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
