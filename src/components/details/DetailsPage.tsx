@@ -10,46 +10,40 @@ import {
   FaDownload,
 } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetBookByIdQuery, useLikeBookMutation } from "../../store/api/book";
+import { useGetBookByIdQuery } from "../../store/api/book";
 import SimilarBooks from "./similar/SimilarBooks";
 import not from "../../assets/notFound.svg";
 import Loader from "../../ui/loader/Loader";
-import { useUserId } from "../../hooks";
+import { userID, useViewLogic } from "../../hooks/use-user-id";
+import { useLikeBook } from "../../hooks/like/Like";
 import { handleDownload } from "./download/Download";
 
 const DetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, refetch } = useGetBookByIdQuery(Number(id));
-  const [likeBook] = useLikeBookMutation();
-  const UserId = useUserId();
+  const UserId = userID(id);
   const [isDownloading, setIsDownloading] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
+  const userId = userID(id);
+  useViewLogic(id, userId);
+
+  const { isLiked, setIsLiked, handleLike } = useLikeBook(id, UserId, refetch);
 
   useEffect(() => {
-    const likedBooks = JSON.parse(localStorage.getItem("Liked-Books") || "[]");
-    console.log("Liked books from localStorage:", likedBooks);
-    setIsLiked(likedBooks.includes(id));
-  }, [id]);
+    if (!id) return;
 
-  const handleLike = async () => {
-    const likedBooks = JSON.parse(localStorage.getItem("Liked-Books") || "[]");
-    console.log("Current likedBooks before update:", likedBooks);
-    if (likedBooks.includes(id)) {
-      alert("Вы уже лайкнули эту книгу!");
-      return;
-    }
+    let likedBooks: string[] = [];
     try {
-      await likeBook({ book_id: Number(id), uid: UserId });
-      likedBooks.push(id);
-      localStorage.setItem("Liked-Books", JSON.stringify(likedBooks));
-      console.log("Updated likedBooks:", likedBooks);
-      setIsLiked(true);
-      refetch();
+      const stored = localStorage.getItem("Liked-Books");
+      likedBooks = stored ? JSON.parse(stored) : [];
+      if (!Array.isArray(likedBooks)) likedBooks = [];
     } catch (error) {
-      console.error("Failed to like the book:", error);
+      console.error("Error parsing Liked-Books:", error);
+      likedBooks = [];
     }
-  };
+
+    setIsLiked(likedBooks.includes(id) || (book?.is_liked ?? false));
+  }, [id, book, setIsLiked]);
 
   if (isLoading) {
     return <Loader />;
@@ -57,25 +51,8 @@ const DetailsPage: FC = () => {
 
   if (!book) {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gridColumn: "1 / -1",
-          width: "100%",
-        }}
-        className={scss.notFound}
-      >
-        <img
-          style={{
-            maxWidth: "400px",
-            width: "100%",
-            height: "400px",
-          }}
-          src={not}
-          alt=""
-        />
+      <div className={scss.notFound}>
+        <img src={not} alt="Not Found" />
       </div>
     );
   }
@@ -155,12 +132,16 @@ const DetailsPage: FC = () => {
                   {isDownloading ? "Жүктөлүп жатат..." : "Жүктоо"}
                 </button>
 
-                <button className={scss.like} onClick={handleLike}>
+                <button
+                  onClick={handleLike}
+                  className={scss.like}
+                  disabled={!UserId || isLiked}
+                >
                   <FaHeart style={{ color: isLiked ? "red" : "white" }} /> Жакты
                 </button>
 
                 <button onClick={() => navigate("/")} className={scss.back}>
-                  ←Артка
+                  ← Артка
                 </button>
               </div>
             </div>

@@ -34,6 +34,16 @@ const api = index.injectEndpoints({
         body: { book: book_id, unique_field: uid },
       }),
     }),
+    viewingCount: build.mutation<
+      void,
+      { book_idView: number; usid: string | null }
+    >({
+      query: ({ book_idView, usid }) => ({
+        url: "/viewing/",
+        method: "POST",
+        body: { book_viewing: book_idView, unique: usid },
+      }),
+    }),
   }),
 });
 
@@ -43,4 +53,5 @@ export const {
   useGetPopularBooksQuery,
   useGetBookByIdQuery,
   useLikeBookMutation,
+  useViewingCountMutation,
 } = api;
