@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useLikeBookMutation } from "../../store/api/book";
 
+const LIKED_BOOKS_KEY = "Liked-Books";
+
 export const useLikeBook = (
   bookId: string | undefined,
   userId: string | null,
@@ -15,7 +17,9 @@ export const useLikeBook = (
       return;
     }
 
-    const likedBooks = JSON.parse(localStorage.getItem("Liked-Books") || "[]");
+    const likedBooks = JSON.parse(
+      localStorage.getItem(LIKED_BOOKS_KEY) || "[]"
+    );
     if (likedBooks.includes(bookId)) {
       alert("Вы уже лайкнули эту книгу!");
       return;
@@ -23,8 +27,10 @@ export const useLikeBook = (
 
     try {
       await likeBook({ book_id: Number(bookId), uid: userId }).unwrap();
+
       const updatedLikedBooks = [...likedBooks, bookId];
-      localStorage.setItem("Liked-Books", JSON.stringify(updatedLikedBooks));
+      localStorage.setItem(LIKED_BOOKS_KEY, JSON.stringify(updatedLikedBooks));
+
       setIsLiked(true);
       refetch();
     } catch (error: any) {
@@ -36,7 +42,10 @@ export const useLikeBook = (
         )
       ) {
         const updatedLikedBooks = [...likedBooks, bookId];
-        localStorage.setItem("Liked-Books", JSON.stringify(updatedLikedBooks));
+        localStorage.setItem(
+          LIKED_BOOKS_KEY,
+          JSON.stringify(updatedLikedBooks)
+        );
         setIsLiked(true);
         alert("Эта книга уже была лайкнута.");
       } else {
