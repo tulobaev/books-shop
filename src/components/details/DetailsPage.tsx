@@ -22,12 +22,11 @@ const DetailsPage: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, refetch } = useGetBookByIdQuery(Number(id));
-  const UserId = useUserId(id);
+  const userId = useUserId(id); // Используем только один хук
   const [isDownloading, setIsDownloading] = useState(false);
-  const userId = useUserId(id);
   useViewLogic(id, userId);
 
-  const { isLiked, setIsLiked, handleLike } = useLikeBook(id, UserId, refetch);
+  const { isLiked, setIsLiked, handleLike } = useLikeBook(id, userId, refetch);
 
   useEffect(() => {
     if (!id) return;
