@@ -24,19 +24,20 @@
     .category_item {
       font-size: 16px;
       font-weight: 500;
-      color: #444;
+      color: #333333;
       padding: 6px;
+      border: 1px solid rgb(56, 113, 255);
       cursor: pointer;
       transition: color 0.3s ease, background-color 0.3s ease;
+      border-radius: 4px;
 
       &:hover {
         background-color: #f0f0f0;
         color: #000;
-        border-radius: 4px;
       }
 
       &.active {
-        background-color: #f0f0f0;
+        background-color: #84afff;
         color: #000;
         font-weight: 600;
       }
