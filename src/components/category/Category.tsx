@@ -12,6 +12,9 @@ const Category: React.FC<Props> = ({
   selectedCategory,
   onSelect,
 }) => {
+  const showAllBooksButton =
+    selectedCategory !== "" && selectedCategory !== "all";
+
   return (
     <div className={scss.content_category}>
       <h1>Категориялар</h1>
@@ -35,6 +38,7 @@ const Category: React.FC<Props> = ({
                 <p>{category.category_name}</p>
               </div>
             ))}
+
         <button
           onClick={() => onSelect("popular")}
           className={`${scss.poppular_button} ${
@@ -49,6 +53,15 @@ const Category: React.FC<Props> = ({
             alt="books"
           />
         </button>
+
+        {showAllBooksButton && (
+          <p
+            onClick={() => onSelect("all")}
+            className={`${scss.category_item}`}
+          >
+            <p>Все книги</p>
+          </p>
+        )}
       </div>
     </div>
   );
