@@ -12,8 +12,6 @@ body {
   background: url(https://img.freepik.com/premium-vector/book-seamless-vector-pattern-doodle-background_629110-361.jpg?semt=ais_hybrid&w=740)
     no-repeat center;
   background-size: 100%;
-  /* Убираем opacity или ставим правильное значение */
-  /* opacity: 0.2; */ /* например, 20% видимости */
 }
 
 body::before {
@@ -23,8 +21,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.885); /* белый полупрозрачный слой */
-  z-index: -1; /* чтобы он был под контентом */
+  background-color: rgba(255, 255, 255, 0.885);
+  z-index: -1;
 }
 
 .container {
