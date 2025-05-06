@@ -59,7 +59,7 @@ const Category: React.FC<Props> = ({
             onClick={() => onSelect("all")}
             className={`${scss.category_item}`}
           >
-            <p>Бардык китептер</p>
+            <p>Бпрдык китептер</p>
           </p>
         )}
       </div>
